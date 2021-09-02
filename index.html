@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/css/bulma-carousel.min.css">
     <script src="https://kit.fontawesome.com/a14d8b8912.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./assets/css/styles.css">
     <title>Movie Foodie</title>
@@ -17,19 +18,19 @@
       <!--nav bar start-->
         <nav class="navbar" role="navigation" aria-label="main navigation">
           <div class="container">
-            <div class="navbar-brand">
+              <div class="navbar-brand">
                 <a class="navbar-item" href="#">
-                  <span class="title appName">
-                    <span class="icon"><i class="fas fa-film"  style="margin-right: 1rem;"></i></span>
-                    MOVIE FOODIE
-                  </span>
-                    </a>
-                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-                    </a>
-            </div>
+                <span class="title appName">
+                  <span class="icon"><i class="fas fa-film"  style="margin-right: 1rem;"></i></span>
+                  MOVIE FOODIE
+                </span>
+                  </a>
+                  <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                  </a>
+              </div>
             <div class="navbar-menu">
               <div class="navbar-end">
                 <a class="navbar-item" href="#watchlist">
@@ -42,15 +43,39 @@
                   Concession Stand
                 </a>
                 <div class="navbar-item">
-                <input type="text" name="searchMovie" id="searchMovie" class="input" placeholder="Search by Movie Title">
-                <div class="field">
+                  <input type="text" name="searchMovie" id="searchMovie" class="input" placeholder="Search by Movie Title">
+                  <div class="field">
                     <div class="control"><button class="button ">Search</button></div>
-                </div>
+                  </div>
                 </div>
               </div>
+            </div>
           </div>
-      </nav>
-      <!--nav bar end-->
+        </nav>
+        <!--nav bar end-->
     </div>
+
+    <section class="section">
+      <div class="container">
+        <!-- start carousel -->
+        <div id="carousel-hero" class="carousel">
+          <div class="item-1">
+            <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/niw2AKHz6XmwiRMLWaoyAOAti0G.jpg" height="25%" width="25%">
+          </div>
+          <div class="item-2">
+            <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ic0intvXZSfBlYPIvWXpU1ivUCO.jpg" height="25%" width="25%">
+          </div>
+          <div class="item-3">
+            <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/wRbjVBdDo5qHAEOVYoMWpM58FSA.jpg" height="25%" width="25%">
+          </div>
+          <div class="item-4">
+            <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/34nDCQZwaEvsy4CFO5hkGRFDCVU.jpg" height="25%" width="25%">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>

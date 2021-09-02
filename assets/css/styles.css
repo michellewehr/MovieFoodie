@@ -1,3 +1,8 @@
 .appName {
   font-family: "Limelight", cursive;
 }
+
+.carousel img {
+  display: block;
+  margin: 0 auto;
+}

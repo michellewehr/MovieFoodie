@@ -35,7 +35,7 @@ function showNewReleases() {
                         //append to document el
                         newReleaseDiv.appendChild(videoDiv);
                         // use bulma column classes
-                        videoDiv.classList = 'column is-one-fourth';
+                        videoDiv.classList = 'column';
                         // create an anchor element to hold the fav icon
                         let favoriteAnchor = document.createElement('a');
                         // create an icon element for favoriting

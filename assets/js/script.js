@@ -91,20 +91,45 @@ function carouselFetch() {
         return response.json();
     })
     .then(function(response) {
-        console.log(response)
+        carouselDisplay(response.results);
     })
-}
-
-function carouselDisplay () {
     
 }
 
+function carouselDisplay (results) {
+    var carouselEl = document.querySelector("#carousel-hero");
+
+    for (let i = 0; i < results.length; i++) {
+        // console.log('https://image.tmdb.org/t/p/w500' + results[i].poster_path);
+
+        var divEl = document.createElement('div');
+        var imgEl = document.createElement('img');
+
+        divEl.className = 'item-' + (i+1);
+        imgEl.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + results[i].poster_path);
+        imgEl.setAttribute('width', '25%');
+        imgEl.setAttribute('height', '25%');
+
+
+        divEl.appendChild(imgEl);
+        carouselEl.appendChild(divEl);
+
+        // loads the carousel after the fetch is completed and HTML appended
+        setTimeout(() => carouselStart(), 0);
+        
+    }
+
+}
+
 // carousel functions
-bulmaCarousel.attach('#carousel-hero', {
-    slidesToScroll: 1,
-    slidesToShow: 1,
-    infinite: true,
-});
+function carouselStart () {
+    bulmaCarousel.attach('#carousel-hero', {
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        infinite: true,
+    });
+};
+
 
 // call showNewRelease function to run on page load
 showNewReleases();

@@ -158,18 +158,20 @@ function carouselFetch() {
         return response.json();
     })
     .then(function(response) {
+        // calls the carousel display function and passes the response results object
         carouselDisplay(response.results);
     })
     
 }
 
 function carouselDisplay (results) {
-    console.log(results);
-
+    // selects the div element that will hold the carousel
     let carouselEl = document.querySelector("#carousel-hero");
 
+    // iterates over the length of the results and adds element
     for (let i = 0; i < results.length; i++) {
 
+        // create all the elements
         let carouselDivEl = document.createElement('div');
         let posterDivEl = document.createElement('div');
         let titleEl = document.createElement('h2');
@@ -178,9 +180,11 @@ function carouselDisplay (results) {
         let yearEl = document.createElement('p');
         let ratingEl = document.createElement('p');
 
+        // parse the release date
         let releaseDate = results[i].release_date;
         let year = moment(releaseDate, "YYYY-MM-DD").format('YYYY');
 
+        // sets classes and text content for the elements
         carouselDivEl.className = 'item-' + (i+1);
         posterDivEl.className = 'carousel-poster'
         titleEl.textContent = results[i].title;
@@ -191,22 +195,22 @@ function carouselDisplay (results) {
         ratingEl.className = 'carousel-rating';
         ratingEl.textContent = "Rating: " + results[i].vote_average + "/10";
 
+        // appends the elements to the carousel element
         carouselDivEl.appendChild(titleEl);
         posterDivEl.appendChild(imgEl);
         ratingYearDiv.appendChild(yearEl);
         ratingYearDiv.appendChild(ratingEl);
         posterDivEl.appendChild(ratingYearDiv);
         carouselDivEl.appendChild(posterDivEl);
-        carouselEl.appendChild(carouselDivEl);
-
-        // loads the carousel after the fetch is completed and HTML appended
-        setTimeout(() => carouselStart(), 0);
-        
+        carouselEl.appendChild(carouselDivEl);        
     }
+
+    // starts the carousel
+    carouselStart();
 
 }
 
-// carousel functions
+// carousel function
 function carouselStart () {
     bulmaCarousel.attach('#carousel-hero', {
         slidesToScroll: 1,
@@ -216,7 +220,7 @@ function carouselStart () {
 };
 
 
-// call showNewRelease function to run on page load
+// call showNewRelease and carouselFetch function to run on page load
 showNewReleases();
 carouselFetch();
 // when the favorite star is clicked on it will change to a solid star

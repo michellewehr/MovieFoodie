@@ -24,3 +24,19 @@
 .newStar {
   color: black;
 }
+/* MOVIE SEARCH*/
+/*To get rating right aligned*/
+.rating {
+  float: right;
+}
+/* set movie poster div position to relative to get star in corner */
+.moviePosterDiv {
+  position: relative;
+}
+.star {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  color: white;
+  filter: drop-shadow(2px 2px 2px black);
+}

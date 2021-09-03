@@ -3,6 +3,7 @@
 const newReleaseDiv = document.querySelector(".newReleases");
 const movieApiKey = '?api_key=c1e65505e4c6142bf89038d711a3cd97';
 const popularMovieApi = 'https://api.themoviedb.org/3/movie/popular' + movieApiKey + '&language=en-US&page=1';
+const discoverMovieApi = 'https://api.themoviedb.org/3/trending/movie/day' + movieApiKey + '&language=en-US&sort_by=popularity.desc';
 //get movie search button from document
 const movieSearchBtn = document.querySelector(".movieSearchBtn");
 
@@ -14,7 +15,7 @@ function showNewReleases() {
         return response.json();
     })
     .then(function(response) {
-        console.log(response)
+        // console.log(response)
         let popularResults = response.results;
         for (let i = 0; i < 4; i++) {
             //get movie id
@@ -83,6 +84,9 @@ function showNewReleases() {
                 }
             })
         }
+        })
+        .catch(function(error) {
+            alert("Oops! Something went wrong.")
         })
     }
 function searchMovieByTitle(title) {
@@ -163,7 +167,78 @@ function searchMovieByTitle(title) {
 
 
 // call showNewRelease function to run on page load
+function carouselFetch() {
+    //fetch discover movie ids
+    fetch(discoverMovieApi)
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(response) {
+        // calls the carousel display function and passes the response results object
+        carouselDisplay(response.results);
+    })
+    
+}
+
+function carouselDisplay (results) {
+    // selects the div element that will hold the carousel
+    let carouselEl = document.querySelector("#carousel-hero");
+
+    // iterates over the length of the results and adds element
+    for (let i = 0; i < results.length; i++) {
+
+        // create all the elements
+        let carouselDivEl = document.createElement('div');
+        let posterDivEl = document.createElement('div');
+        let titleEl = document.createElement('h2');
+        let imgEl = document.createElement('img');
+        let ratingYearDiv = document.createElement('div');
+        let yearEl = document.createElement('p');
+        let ratingEl = document.createElement('p');
+
+        // parse the release date
+        let releaseDate = results[i].release_date;
+        let year = moment(releaseDate, "YYYY-MM-DD").format('YYYY');
+
+        // sets classes and text content for the elements
+        carouselDivEl.className = 'item-' + (i+1);
+        posterDivEl.className = 'carousel-poster'
+        titleEl.textContent = results[i].title;
+        imgEl.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + results[i].poster_path);
+        ratingYearDiv.className = 'poster-footer'
+        yearEl.className = 'carousel-year';
+        yearEl.textContent = year;
+        ratingEl.className = 'carousel-rating';
+        ratingEl.textContent = "Rating: " + results[i].vote_average + "/10";
+
+        // appends the elements to the carousel element
+        carouselDivEl.appendChild(titleEl);
+        posterDivEl.appendChild(imgEl);
+        ratingYearDiv.appendChild(yearEl);
+        ratingYearDiv.appendChild(ratingEl);
+        posterDivEl.appendChild(ratingYearDiv);
+        carouselDivEl.appendChild(posterDivEl);
+        carouselEl.appendChild(carouselDivEl);        
+    }
+
+    // starts the carousel
+    carouselStart();
+
+}
+
+// carousel function
+function carouselStart () {
+    bulmaCarousel.attach('#carousel-hero', {
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        infinite: true,
+    });
+};
+
+
+// call showNewRelease and carouselFetch function to run on page load
 showNewReleases();
+carouselFetch();
 // when the favorite star is clicked on it will change to a solid star
 $(document).on('click', '.fa-star', function() {
     console.log($(this));
@@ -172,12 +247,13 @@ $(document).on('click', '.fa-star', function() {
  })
 
 
-//when click on the 
+//when click on the movie poster go to site that shows streaming options
 $(document).on('click', '.moviePosterDiv', function() {
     let movieId = $(this)[0].id;
     getStreamingOptions(movieId);
 })
 
+//get streaming/ where to watch function
 function getStreamingOptions(id) {
     const viewUrl = 'https://api.themoviedb.org/3/movie/' + id + '/watch/providers' + movieApiKey + '&watch_region=us&language=en-US';
      //fetch the view Url

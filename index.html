@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css">
     <script src="https://kit.fontawesome.com/a14d8b8912.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./assets/css/styles.css">
     <title>Movie Foodie</title>
@@ -17,19 +18,19 @@
       <!--nav bar start-->
         <nav class="navbar" role="navigation" aria-label="main navigation">
           <div class="container">
-            <div class="navbar-brand">
+              <div class="navbar-brand">
                 <a class="navbar-item" href="#">
-                  <span class="title appName">
-                    <span class="icon"><i class="fas fa-film"  style="margin-right: 1rem;"></i></span>
-                    MOVIE FOODIE
-                  </span>
-                    </a>
-                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-                    </a>
-            </div>
+                <span class="title appName">
+                  <span class="icon"><i class="fas fa-film"  style="margin-right: 1rem;"></i></span>
+                  MOVIE FOODIE
+                </span>
+                  </a>
+                  <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                  </a>
+              </div>
             <div class="navbar-menu">
               <div class="navbar-end">
                 <a class="navbar-item" href="#watchlist">
@@ -50,10 +51,13 @@
                 </div>
                 </div>
               </div>
+            </div>
           </div>
-      </nav>
-      <!--nav bar end-->
-      <!--new release feature start-->
+        </nav>
+        <!--nav bar end-->
+    </div>
+    <!--new release feature start-->
+    <section class="section">
       <div class="container">
         <h2 class="newReleaseHeading is-2">New Releases</h2>
         <div class=" columns is-multiline newReleases"></div>
@@ -65,12 +69,29 @@
     
           </div>
            </div>
+        <h2 class="newReleaseHeading is-2">Trending</h2>
+        <!-- carousel container -->
+        <div id="carousel-hero" class="carousel">
+        </div>
+        <!-- end carousel container -->
       </div>
-      <!--movie search div end-->
+    </section>
+
+    
+    <div class="container">
+      <h2 class="newReleaseHeading is-2">New Releases</h2>
+      <div class="columns is-multiline newReleases"></div>
     </div>
+    <!--new release feature end-->
+    <!--movie search div start-->
+    <div class="container">
+      <div class="posters columns is-multiline"></div>
+    </div>
+    <!--movie search div end-->
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>

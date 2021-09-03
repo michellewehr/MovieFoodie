@@ -8,7 +8,7 @@
 .newReleaseHeading {
   margin-bottom: 1rem;
   font-size: 1.5rem;
-  border-bottom: 2px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
 }
 .popularRating {
   display: inline;

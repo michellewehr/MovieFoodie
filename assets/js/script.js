@@ -95,7 +95,7 @@ function searchMovieByTitle(title) {
     // clear the div so it clears every new search
     $(".posters").html(" ");
     //brings us to the section of the page that shows movies
-    window.location.hash = "#searchedMovies";
+    window.location.href = "#searchedMovies";
     // get user search value
     let movieTitle = $('#searchMovie').val().trim();
     // get movie api url

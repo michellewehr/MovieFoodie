@@ -120,6 +120,7 @@ function searchMovieByTitle(title) {
                 //create a poster div for each movie
                 let moviePoster = document.createElement("div");
                 moviePoster.classList = 'column is-one-fifth moviePosterDiv';
+                moviePoster.id = movieId;
                 //create the image element
                 let posterImg = document.createElement("img");
                 posterImg.src = 'https://image.tmdb.org/t/p/original' + response.poster_path;
@@ -171,50 +172,26 @@ $(document).on('click', '.fa-star', function() {
  })
 
 
-//  function streamingOptions(id) {
-//      const viewUrl = 'https://api.themoviedb.org/3/movie/' + id + '/watch/providers' + movieApiKey + '&watch_region=us&language=en-US';
-//      //fetch the view Url
-//      fetch(viewUrl) 
-//      .then(function(response) {
-//          return response.json()
-//      })
-//      .then(function(response) {
-//          const rentalOptions = response.results.US.rent;
-//         //  console.log(rentalOptions)
-//         //document element that will hold the movie posters
-//         let moviesEl = document.querySelector(".posters");
-//         //create ul to hold rent options in list
-//         let rentList = document.createElement('ul');
-//          rentList.textContent = "Rental Options:"
-//         //append rentlist to document div
-//             moviesEl.appendChild(rentList);
-//          for (let i = 0; i < rentalOptions.length; i++) {
-//               // create list items for rent list
-//             let rentListItem = document.createElement('li');
-//             rentListItem.textContent = rentalOptions[i].provider_name
-//             //append list item to list
-//             rentList.appendChild(rentListItem)
-//          }
-//         })
-       
-//      //catch the movies with no rental options in the us
-//      .catch(function(error) {
-//         //document element that will hold the movie posters
-//         let moviesEl = document.querySelector(".posters");
-//         //create ul to hold rent options in list
-//         let rentList = document.createElement('ul');
-//          rentList.textContent = "Rental Options:"
-//         //append rentlist to document div
-//             moviesEl.appendChild(rentList);
-//          //create li item with text "We did not find rental options for this movie."
-//          let noRentListItem = document.createElement("li");
-//          noRentListItem.textContent = "We did not find rental options for this movie."
-//         //append text to list
-//         rentList.appendChild(noRentListItem);
-//         })
-     
-// }
+//when click on the 
+$(document).on('click', '.moviePosterDiv', function() {
+    let movieId = $(this)[0].id;
+    getStreamingOptions(movieId);
+})
 
-
-
+function getStreamingOptions(id) {
+    const viewUrl = 'https://api.themoviedb.org/3/movie/' + id + '/watch/providers' + movieApiKey + '&watch_region=us&language=en-US';
+     //fetch the view Url
+     fetch(viewUrl) 
+     .then(function(response) {
+         return response.json()
+     })
+     .then(function(response){
+        //  console.log(response.results.US);
+         const streamingOption = response.results.US.link;
+         window.open(streamingOption, '_blank');
+     })
+     .catch(function(error) {
+         alert("We couldn't find watch options for your movie.")
+     })
+}
 

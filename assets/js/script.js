@@ -3,7 +3,7 @@
 const newReleaseDiv = document.querySelector(".newReleases");
 const movieApiKey = '?api_key=c1e65505e4c6142bf89038d711a3cd97';
 const popularMovieApi = 'https://api.themoviedb.org/3/movie/popular' + movieApiKey + '&language=en-US&page=1';
-const discoverMovieApi = 'https://api.themoviedb.org/3/discover/movie' + movieApiKey + '&language=en-US&sort_by=popularity.desc';
+const discoverMovieApi = 'https://api.themoviedb.org/3/trending/movie/day' + movieApiKey + '&language=en-US&sort_by=popularity.desc';
 
 function showNewReleases() {
     //fetch to get popular movie ids
@@ -97,22 +97,40 @@ function carouselFetch() {
 }
 
 function carouselDisplay (results) {
-    var carouselEl = document.querySelector("#carousel-hero");
+    console.log(results);
+
+    let carouselEl = document.querySelector("#carousel-hero");
 
     for (let i = 0; i < results.length; i++) {
-        // console.log('https://image.tmdb.org/t/p/w500' + results[i].poster_path);
 
-        var divEl = document.createElement('div');
-        var imgEl = document.createElement('img');
+        let carouselDivEl = document.createElement('div');
+        let posterDivEl = document.createElement('div');
+        let titleEl = document.createElement('h2');
+        let imgEl = document.createElement('img');
+        let ratingYearDiv = document.createElement('div');
+        let yearEl = document.createElement('p');
+        let ratingEl = document.createElement('p');
 
-        divEl.className = 'item-' + (i+1);
+        let releaseDate = results[i].release_date;
+        let year = moment(releaseDate, "YYYY-MM-DD").format('YYYY');
+
+        carouselDivEl.className = 'item-' + (i+1);
+        posterDivEl.className = 'carousel-poster'
+        titleEl.textContent = results[i].title;
         imgEl.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + results[i].poster_path);
-        imgEl.setAttribute('width', '25%');
-        imgEl.setAttribute('height', '25%');
+        ratingYearDiv.className = 'poster-footer'
+        yearEl.className = 'carousel-year';
+        yearEl.textContent = year;
+        ratingEl.className = 'carousel-rating';
+        ratingEl.textContent = "Rating: " + results[i].vote_average + "/10";
 
-
-        divEl.appendChild(imgEl);
-        carouselEl.appendChild(divEl);
+        carouselDivEl.appendChild(titleEl);
+        posterDivEl.appendChild(imgEl);
+        ratingYearDiv.appendChild(yearEl);
+        ratingYearDiv.appendChild(ratingEl);
+        posterDivEl.appendChild(ratingYearDiv);
+        carouselDivEl.appendChild(posterDivEl);
+        carouselEl.appendChild(carouselDivEl);
 
         // loads the carousel after the fetch is completed and HTML appended
         setTimeout(() => carouselStart(), 0);

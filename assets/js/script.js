@@ -3,6 +3,7 @@
 const newReleaseDiv = document.querySelector(".newReleases");
 const movieApiKey = '?api_key=c1e65505e4c6142bf89038d711a3cd97';
 const popularMovieApi = 'https://api.themoviedb.org/3/movie/popular' + movieApiKey + '&language=en-US&page=1';
+const discoverMovieApi = 'https://api.themoviedb.org/3/discover/movie' + movieApiKey + '&language=en-US&sort_by=popularity.desc';
 
 function showNewReleases() {
     //fetch to get popular movie ids
@@ -11,7 +12,7 @@ function showNewReleases() {
         return response.json();
     })
     .then(function(response) {
-        console.log(response)
+        // console.log(response)
         let popularResults = response.results;
         for (let i = 0; i < 5; i++) {
             //get movie id
@@ -83,6 +84,21 @@ function showNewReleases() {
         })
 }
 
+function carouselFetch() {
+    //fetch discover movie ids
+    fetch(discoverMovieApi)
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(response) {
+        console.log(response)
+    })
+}
+
+function carouselDisplay () {
+    
+}
+
 // carousel functions
 bulmaCarousel.attach('#carousel-hero', {
     slidesToScroll: 1,
@@ -92,6 +108,7 @@ bulmaCarousel.attach('#carousel-hero', {
 
 // call showNewRelease function to run on page load
 showNewReleases();
+carouselFetch();
 // when the favorite star is clicked on it will change to a solid star
 $(document).on('click', '.fa-star', function() {
     console.log($(this));

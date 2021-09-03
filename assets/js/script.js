@@ -86,12 +86,17 @@ function showNewReleases() {
         })
     }
 function searchMovieByTitle(title) {
+    // clear the div so it clears every new search
     $(".posters").html("");
+    // get user search value
     let movieTitle = $('#searchMovie').val().trim();
+    // get movie api url
     let movieApiUrl = 'https://api.themoviedb.org/3/search/movie' + movieApiKey + '&query=' + movieTitle;
+    // if nothing was entered, return out of function
     if (!movieTitle) {
         return;
     }
+    // fetch movie search API
     fetch(movieApiUrl) 
     .then(function(response) {
         return response.json();
@@ -99,15 +104,17 @@ function searchMovieByTitle(title) {
     .then(function(response) {
         // let resultArr = [];
         let resultArr = response.results;
-        console.log(resultArr)
+        // console.log(resultArr)
         for (let i = 0; i < resultArr.length; i++) {
             let movieId = response.results[i].id;
+            //use movieId to run streamingOptions function 
+            // streamingOptions(movieId);
             fetch('https://api.themoviedb.org/3/movie/' + movieId + movieApiKey)
             .then(function(response) {
                 return response.json();
             })
             .then(function(response) {
-                console.log(response)
+                // console.log(response)
                 //document element that will hold the movie posters
                 let moviesEl = document.querySelector(".posters")
                 //create a poster div for each movie
@@ -148,7 +155,11 @@ function searchMovieByTitle(title) {
             })
         }
     })
+    .catch(function(error) {
+        alert("Oops something went wrong!");
+    })
 }
+
 
 // call showNewRelease function to run on page load
 showNewReleases();
@@ -158,3 +169,52 @@ $(document).on('click', '.fa-star', function() {
     $(this).removeClass("far");
     $(this).addClass("fas");
  })
+
+
+//  function streamingOptions(id) {
+//      const viewUrl = 'https://api.themoviedb.org/3/movie/' + id + '/watch/providers' + movieApiKey + '&watch_region=us&language=en-US';
+//      //fetch the view Url
+//      fetch(viewUrl) 
+//      .then(function(response) {
+//          return response.json()
+//      })
+//      .then(function(response) {
+//          const rentalOptions = response.results.US.rent;
+//         //  console.log(rentalOptions)
+//         //document element that will hold the movie posters
+//         let moviesEl = document.querySelector(".posters");
+//         //create ul to hold rent options in list
+//         let rentList = document.createElement('ul');
+//          rentList.textContent = "Rental Options:"
+//         //append rentlist to document div
+//             moviesEl.appendChild(rentList);
+//          for (let i = 0; i < rentalOptions.length; i++) {
+//               // create list items for rent list
+//             let rentListItem = document.createElement('li');
+//             rentListItem.textContent = rentalOptions[i].provider_name
+//             //append list item to list
+//             rentList.appendChild(rentListItem)
+//          }
+//         })
+       
+//      //catch the movies with no rental options in the us
+//      .catch(function(error) {
+//         //document element that will hold the movie posters
+//         let moviesEl = document.querySelector(".posters");
+//         //create ul to hold rent options in list
+//         let rentList = document.createElement('ul');
+//          rentList.textContent = "Rental Options:"
+//         //append rentlist to document div
+//             moviesEl.appendChild(rentList);
+//          //create li item with text "We did not find rental options for this movie."
+//          let noRentListItem = document.createElement("li");
+//          noRentListItem.textContent = "We did not find rental options for this movie."
+//         //append text to list
+//         rentList.appendChild(noRentListItem);
+//         })
+     
+// }
+
+
+
+

@@ -40,3 +40,9 @@
   color: white;
   filter: drop-shadow(2px 2px 2px black);
 }
+/* Set streaming div to  be on top of poster div*/
+.streamingDiv {
+  position: relative;
+  left: 10rem;
+  background-color: black;
+}

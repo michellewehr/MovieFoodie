@@ -84,8 +84,8 @@ function showNewReleases() {
             })
         }
         })
-}
-
+    }
+    
 function searchMovieByTitle(title) {
     $(".posters").html("");
     let movieTitle = $('#searchMovie').val().trim();

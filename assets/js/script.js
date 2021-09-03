@@ -20,7 +20,7 @@ function showNewReleases() {
             //get movie id
             let movieId = popularResults[i].id;
             //fetch with movie id to get vidoes
-            fetch('http://api.themoviedb.org/3/movie/' + movieId + movieApiKey + '&append_to_response=videos&language=en-US')
+            fetch('https://api.themoviedb.org/3/movie/' + movieId + movieApiKey + '&append_to_response=videos&language=en-US')
             .then(function(response) {
                 return response.json()
             })
@@ -85,7 +85,6 @@ function showNewReleases() {
         }
         })
     }
-    
 function searchMovieByTitle(title) {
     $(".posters").html("");
     let movieTitle = $('#searchMovie').val().trim();

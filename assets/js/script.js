@@ -1,4 +1,11 @@
 
+//nav bar hamburger menu functionality 
+const burgerIcon = document.querySelector('.burger');
+const navbarMenu = document.querySelector('#nav-links');
+//attach event listener when click burger icon to toggler is-active class
+burgerIcon.addEventListener('click', function() {
+    navbarMenu.classList.toggle('is-active');
+})
 //get html element to append all elements for the video
 const newReleaseDiv = document.querySelector(".newReleases");
 const movieApiKey = '?api_key=c1e65505e4c6142bf89038d711a3cd97';

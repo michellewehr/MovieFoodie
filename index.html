@@ -25,13 +25,13 @@
                 MOVIE FOODIE
               </span>
                 </a>
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                   <span aria-hidden="true"></span>
                   <span aria-hidden="true"></span>
                   <span aria-hidden="true"></span>
                 </a>
             </div>
-          <div class="navbar-menu">
+          <div class="navbar-menu" id="nav-links">
             <div class="navbar-end">
               <a class="navbar-item" href="#watchlist">
                 Watchlist
@@ -83,6 +83,41 @@
     </div>
   </section>
   <!--movie search div end-->
+    <!--Movie Genres-->
+    <section class="section" id="movies">
+      <div class="field container">
+        <h2 class="newReleaseHeading is-2">Search by Genre</h2>
+            <label for="select" class="subtitle is-4">Select a movie genre: </label>
+            <div class="select is-link genres">
+                <select>
+                <option class="genreType" value="28">Action</option>
+                <option class="genreType" value="12">Adventure</option>
+                <option class="genreType" value="16">Animation</option>
+                <option class="genreType" value="35">Comedy</option>
+                <option class="genreType" value="80">Crime</option>
+                <option class="genreType" value="99">Documentary</option>
+                <option class="genreType" value="18">Drama</option>
+                <option class="genreType" value="10751">Family</option>
+                <option class="genreType" value="14">Fantasy</option>
+                <option class="genreType" value="36">History</option>
+                <option class="genreType" value="27">Horror</option>
+                <option class="genreType" value="10402">Music</option>
+                <option class="genreType" value="9648">Mystery</option>
+                <option class="genreType" value="10749">Romance</option>
+                <option class="genreType" value="878">Science Fiction</option>
+                <option class="genreType" value="10770">TV Movie</option>
+                <option class="genreType" value="53">Thriller</option>
+                <option class="genreType" value="10752">War</option>
+                <option class="genreType" value="37">Western</option>
+                </select>
+            </div>
+            <button class="button genre-btn">Search for Movies</button>
+    </div>
+    <div class="genreSearchResults container">
+        <div class="genrePosters columns is-multiline"  id="genreSearchedMovies"></div>
+    </div>
+  </section>
+  <!--movie genre end-->
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

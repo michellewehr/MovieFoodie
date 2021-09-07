@@ -1,4 +1,11 @@
 
+//nav bar hamburger menu functionality 
+const burgerIcon = document.querySelector('.burger');
+const navbarMenu = document.querySelector('#nav-links');
+//attach event listener when click burger icon to toggler is-active class
+burgerIcon.addEventListener('click', function() {
+    navbarMenu.classList.toggle('is-active');
+})
 //get html element to append all elements for the video
 const newReleaseDiv = document.querySelector(".newReleases");
 const movieApiKey = '?api_key=c1e65505e4c6142bf89038d711a3cd97';
@@ -275,3 +282,72 @@ function getStreamingOptions(id) {
      })
 }
 
+
+//Search by genre function
+function searchByGenre() {
+    // get value related to selected option
+    let genreId = $('.genres option:selected').val();
+    // api call for filtering by genre
+    let genreUrl = 'https://api.themoviedb.org/3/discover/movie' + movieApiKey + '&language=en-US' + '&with_genres=' + genreId;
+    // fetch call 
+    fetch(genreUrl)
+    .then(function(response) {
+        return response.json()
+    })
+    .then(function(response) {
+        console.log(response.results)
+        // console.log(response);
+        let searchedByGenreArr = response.results
+        for (let i = 0; i < searchedByGenreArr.length; i++) {
+            // get html document element to append items to
+            let genrePostersDiv = document.querySelector('.genrePosters');
+            //set id to movie id to get stream options
+            let genreDiv = document.createElement('div');
+            genreDiv.id = searchedByGenreArr[i].id;
+            genreDiv.classList = 'column is-one-fifth moviePosterDiv';
+            //make img element 
+            let genreImg = document.createElement('img');
+            genreImg.src = 'https://image.tmdb.org/t/p/original' + searchedByGenreArr[i].poster_path;
+            //append new div to document element
+            genrePostersDiv.appendChild(genreDiv);
+            //append image to genre div
+            genreDiv.appendChild(genreImg);
+            // create a clickable favorite star element
+            let favoriteAnchor = document.createElement("a");
+            // create the star icon element
+            let favoriteIcon = document.createElement("i");
+            favoriteIcon.classList = 'far fa-star fa-large star';
+            // append the anchor to the movie poster
+            genreDiv.appendChild(favoriteAnchor);
+            // append the icon to the anchor 
+            favoriteAnchor.appendChild(favoriteIcon);
+            // get release date
+            let releaseDate = searchedByGenreArr[i].release_date;
+            // format the date into just the release year
+            let year = moment(releaseDate, "YYYY-MM-DD").format('YYYY');
+            //create span to hold the release year
+            let yearEl = document.createElement("span");
+            yearEl.textContent = "Released: " + year;
+            //append the year to the movie poster div
+            genreDiv.appendChild(yearEl);
+            // create movie rating span
+            let movieRating = document.createElement('span');
+            // add "rating" class so that there is space between the 2 spans
+            movieRating.classList = 'rating';
+            movieRating.textContent = searchedByGenreArr[i].vote_average + ' /10';
+            //append movie rating to the poster div
+            genreDiv.appendChild(movieRating);
+        }
+
+    })
+    .catch(function(error) {
+        alert("Oops! Something went wrong.")
+    })
+
+}
+
+///genre search
+$('.genre-btn').on('click', function() {
+   $('.genrePosters').html("");
+   searchByGenre();
+})

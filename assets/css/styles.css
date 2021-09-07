@@ -64,6 +64,7 @@
 /* set movie poster div position to relative to get star in corner */
 .moviePosterDiv {
   position: relative;
+  cursor: pointer;
 }
 .star {
   position: absolute;

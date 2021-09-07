@@ -7,15 +7,6 @@ const discoverMovieApi = 'https://api.themoviedb.org/3/trending/movie/day' + mov
 //get movie search button from document
 const movieSearchBtn = document.querySelector(".movieSearchBtn");
 
-//nav bar hamburger menu functionality 
-const burgerIcon = document.querySelector('.burger');
-const navbarMenu = document.querySelector('#nav-links');
-//attach event listener when click burger icon to toggler is-active class
-burgerIcon.addEventListener('click', function() {
-    navbarMenu.classList.toggle('is-active');
-})
-
-
 //POPULAR MOVIES TRAILER
 function showNewReleases() {
     //fetch to get popular movie ids

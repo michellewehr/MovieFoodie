@@ -85,14 +85,26 @@ function showNewReleases() {
             })
         }
         })
+        .catch(function(error) {
+            alert("Oops! Something went wrong.")
+        })
     }
 function searchMovieByTitle(title) {
-    $(".posters").html("");
+    //make heading for section
+    $(".searchResultsHeading").text('Search Results: ');
+    // clear the div so it clears every new search
+    $(".posters").html(" ");
+    //brings us to the section of the page that shows movies
+    window.location.href = "#searchedMovies";
+    // get user search value
     let movieTitle = $('#searchMovie').val().trim();
+    // get movie api url
     let movieApiUrl = 'https://api.themoviedb.org/3/search/movie' + movieApiKey + '&query=' + movieTitle;
+    // if nothing was entered, return out of function
     if (!movieTitle) {
         return;
     }
+    // fetch movie search API
     fetch(movieApiUrl) 
     .then(function(response) {
         return response.json();
@@ -100,20 +112,23 @@ function searchMovieByTitle(title) {
     .then(function(response) {
         // let resultArr = [];
         let resultArr = response.results;
-        console.log(resultArr)
+        // console.log(resultArr)
         for (let i = 0; i < resultArr.length; i++) {
             let movieId = response.results[i].id;
+            //use movieId to run streamingOptions function 
+            // streamingOptions(movieId);
             fetch('https://api.themoviedb.org/3/movie/' + movieId + movieApiKey)
             .then(function(response) {
                 return response.json();
             })
             .then(function(response) {
-                console.log(response)
+                // console.log(response)
                 //document element that will hold the movie posters
                 let moviesEl = document.querySelector(".posters")
                 //create a poster div for each movie
                 let moviePoster = document.createElement("div");
                 moviePoster.classList = 'column is-one-fifth moviePosterDiv';
+                moviePoster.id = movieId;
                 //create the image element
                 let posterImg = document.createElement("img");
                 posterImg.src = 'https://image.tmdb.org/t/p/original' + response.poster_path;
@@ -149,8 +164,13 @@ function searchMovieByTitle(title) {
             })
         }
     })
+    .catch(function(error) {
+        alert("Oops something went wrong!");
+    })
 }
 
+
+// call showNewRelease function to run on page load
 function carouselFetch() {
     //fetch discover movie ids
     fetch(discoverMovieApi)
@@ -229,3 +249,29 @@ $(document).on('click', '.fa-star', function() {
     $(this).removeClass("far");
     $(this).addClass("fas");
  })
+
+
+//when click on the movie poster go to site that shows streaming options
+$(document).on('click', '.moviePosterDiv', function() {
+    let movieId = $(this)[0].id;
+    getStreamingOptions(movieId);
+})
+
+//get streaming/ where to watch function
+function getStreamingOptions(id) {
+    const viewUrl = 'https://api.themoviedb.org/3/movie/' + id + '/watch/providers' + movieApiKey + '&watch_region=us&language=en-US';
+     //fetch the view Url
+     fetch(viewUrl) 
+     .then(function(response) {
+         return response.json()
+     })
+     .then(function(response){
+        //  console.log(response.results.US);
+         const streamingOption = response.results.US.link;
+         window.open(streamingOption, '_blank');
+     })
+     .catch(function(error) {
+         alert("We couldn't find watch options for your movie.")
+     })
+}
+

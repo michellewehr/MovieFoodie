@@ -14,70 +14,75 @@
     <title>Movie Foodie</title>
 </head>
 <body>
-    <div class="container is-fluid">
-      <!--nav bar start-->
-        <nav class="navbar" role="navigation" aria-label="main navigation">
-          <div class="container">
-              <div class="navbar-brand">
-                <a class="navbar-item" href="#">
-                <span class="title appName">
-                  <span class="icon"><i class="fas fa-film"  style="margin-right: 1rem;"></i></span>
-                  MOVIE FOODIE
-                </span>
-                  </a>
-                  <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                  </a>
+  <div class="container is-fluid">
+    <!--nav bar start-->
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="#">
+              <span class="title appName">
+                <span class="icon"><i class="fas fa-film"  style="margin-right: 1rem;"></i></span>
+                MOVIE FOODIE
+              </span>
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                </a>
+            </div>
+          <div class="navbar-menu">
+            <div class="navbar-end">
+              <a class="navbar-item" href="#watchlist">
+                Watchlist
+              </a>
+              <a class="navbar-item" href="#movies">
+                Movies
+              </a>
+              <a class="navbar-item" href="#concessions">
+                Concession Stand
+              </a>
+              <div class="navbar-item">
+              <input type="text" name="searchMovie" id="searchMovie" class="input" placeholder="Search by Movie Title">
+              <div class="field">
+                <div class="control">
+                  <button class="button movieSearchBtn" onclick="searchMovieByTitle()">Search</button>
+                </div>
               </div>
-            <div class="navbar-menu">
-              <div class="navbar-end">
-                <a class="navbar-item" href="#watchlist">
-                  Watchlist
-                </a>
-                <a class="navbar-item" href="#movies">
-                  Movies
-                </a>
-                <a class="navbar-item" href="#concessions">
-                  Concession Stand
-                </a>
-                <div class="navbar-item">
-                <input type="text" name="searchMovie" id="searchMovie" class="input" placeholder="Search by Movie Title">
-                <div class="field">
-                  <div class="control">
-                    <button class="button movieSearchBtn" onclick="searchMovieByTitle()">Search</button>
-                  </div>
-                </div>
-                </div>
               </div>
             </div>
           </div>
-        </nav>
-        <!--nav bar end-->
-    </div>
-
-    <section class="section">
-      <div class="container">
-        <h2 class="newReleaseHeading is-2">Trending</h2>
-        <!-- carousel container -->
-        <div id="carousel-hero" class="carousel">
         </div>
-        <!-- end carousel container -->
-      </div>
-    </section>
+      </nav>
+      <!--nav bar end-->
+  </div>
 
-    
+  <section class="section">
+    <div class="container">
+      <h2 class="newReleaseHeading is-2">Trending</h2>
+      <!-- carousel container -->
+      <div id="carousel-hero" class="carousel">
+      </div>
+      <!-- end carousel container -->
+    </div>
+  </section>
+
+  
+  <section class="section">
     <div class="container">
       <h2 class="newReleaseHeading is-2">New Releases</h2>
       <div class="columns is-multiline newReleases"></div>
     </div>
-    <!--new release feature end-->
-    <!--movie search div start-->
-    <div class="container">
-      <div class="posters columns is-multiline"></div>
+  </section>
+  <!--new release feature end-->
+  <!--movie search div start-->
+  <section class="section">
+    <div class="container posterContainer">
+      <h2 class="newReleaseHeading is-2 searchResultsHeading"></h2>
+      <div class="posters columns is-multiline"  id="searchedMovies"></div>
     </div>
-    <!--movie search div end-->
+  </section>
+  <!--movie search div end-->
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

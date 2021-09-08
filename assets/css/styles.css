@@ -56,6 +56,30 @@
   background: lightgrey;
 }
 
+.overview {
+  transition: opacity 1s ease-in;
+  transition: max-height 0.25s ease-out;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.carousel-poster:hover .overview {
+  opacity: 1;
+  transition: max-height 0.75s ease-in;
+  max-height: 500px;
+}
+
+.slider-pagination .slider-page {
+  background: lightgrey;
+}
+
+.star-custom {
+  position: relative !important;
+  top: -365px !important;
+  right: -140px !important;
+}
+
 /* MOVIE SEARCH*/
 /*To get rating right aligned*/
 .rating {

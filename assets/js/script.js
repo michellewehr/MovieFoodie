@@ -205,7 +205,9 @@ function carouselDisplay (results) {
         let imgEl = document.createElement('img');
         let ratingYearDiv = document.createElement('div');
         let yearEl = document.createElement('p');
+        let starEl = document.createElement('i');
         let ratingEl = document.createElement('p');
+        let overviewEl = document.createElement('p');
 
         // parse the release date
         let releaseDate = results[i].release_date;
@@ -219,14 +221,19 @@ function carouselDisplay (results) {
         ratingYearDiv.className = 'poster-footer'
         yearEl.className = 'carousel-year';
         yearEl.textContent = year;
+        starEl.className = 'far fa-star fa-large star star-custom';
         ratingEl.className = 'carousel-rating';
         ratingEl.textContent = "Rating: " + results[i].vote_average + "/10";
+        overviewEl.className = 'overview';
+        overviewEl.textContent = results[i].overview;
 
         // appends the elements to the carousel element
         carouselDivEl.appendChild(titleEl);
         posterDivEl.appendChild(imgEl);
         ratingYearDiv.appendChild(yearEl);
+        ratingYearDiv.appendChild(starEl);
         ratingYearDiv.appendChild(ratingEl);
+        ratingYearDiv.appendChild(overviewEl);
         posterDivEl.appendChild(ratingYearDiv);
         carouselDivEl.appendChild(posterDivEl);
         carouselEl.appendChild(carouselDivEl);        
@@ -243,6 +250,8 @@ function carouselStart () {
         slidesToScroll: 1,
         slidesToShow: 1,
         infinite: true,
+        autoplay: true,
+        autoplaySpeed: 3000
     });
 };
 

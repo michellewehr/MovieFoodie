@@ -205,6 +205,7 @@ function carouselDisplay (results) {
         let imgEl = document.createElement('img');
         let ratingYearDiv = document.createElement('div');
         let yearEl = document.createElement('p');
+        let starEl = document.createElement('i');
         let ratingEl = document.createElement('p');
 
         // parse the release date
@@ -219,6 +220,7 @@ function carouselDisplay (results) {
         ratingYearDiv.className = 'poster-footer'
         yearEl.className = 'carousel-year';
         yearEl.textContent = year;
+        starEl.className = 'far fa-star fa-large star star-custom';
         ratingEl.className = 'carousel-rating';
         ratingEl.textContent = "Rating: " + results[i].vote_average + "/10";
 
@@ -226,6 +228,7 @@ function carouselDisplay (results) {
         carouselDivEl.appendChild(titleEl);
         posterDivEl.appendChild(imgEl);
         ratingYearDiv.appendChild(yearEl);
+        ratingYearDiv.appendChild(starEl);
         ratingYearDiv.appendChild(ratingEl);
         posterDivEl.appendChild(ratingYearDiv);
         carouselDivEl.appendChild(posterDivEl);

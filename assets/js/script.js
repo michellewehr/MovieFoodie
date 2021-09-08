@@ -247,7 +247,7 @@ function carouselStart () {
         slidesToShow: 1,
         infinite: true,
         autoplay: true,
-        autoplaySpeed: 2000
+        autoplaySpeed: 3000
     });
 };
 

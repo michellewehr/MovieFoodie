@@ -47,21 +47,25 @@ function showNewReleases() {
                         newReleaseDiv.appendChild(videoDiv);
                         // use bulma column classes
                         videoDiv.classList = 'column';
+                        //create div to hold title and star
+                        let titleStarDiv = document.createElement('div');
+                        titleStarDiv.classList = 'columns'
+                        videoDiv.appendChild(titleStarDiv);
                         // create an anchor element to hold the fav icon
                         let favoriteAnchor = document.createElement('a');
                         // create an icon element for favoriting
                         let favoriteIcon = document.createElement('i');
-                        favoriteIcon.classList = 'far fa-star fa-large newStar';
+                        favoriteIcon.classList = 'far fa-star fa-large newStar column';
                         //append the fav icon to fav anchor
                         favoriteAnchor.appendChild(favoriteIcon);
                         // append fav anchor to video div element
-                        videoDiv.appendChild(favoriteAnchor);
+                        titleStarDiv.appendChild(favoriteAnchor);
                         // create title for video/ movie
                         let titleEl = document.createElement("h2");
-                        titleEl.classList = 'newReleaseMovieTitle';
+                        titleEl.classList = 'newReleaseMovieTitle column';
                         titleEl.textContent = response.title;
                         //append the title to the video div
-                        videoDiv.appendChild(titleEl);
+                        titleStarDiv.appendChild(titleEl);
                         // get video key to put in the url to embed the video 
                         let videoKey = response.videos.results[0].key;
                         let videoUrl = 'https://www.youtube.com/embed/' + videoKey;

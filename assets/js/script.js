@@ -179,6 +179,12 @@ function searchMovieByTitle(title) {
                 moviePoster.appendChild(movieRating);
             })
         }
+        // selects search results section and unhides if hidden
+        var searchSection = document.getElementById('search-section');
+        console.log(searchSection);
+        if (searchSection.style.display === "none") {
+            searchSection.style.display = "block";
+        }
     })
     .catch(function(error) {
         modalText.textContent = 'Oops! Something went wrong!'

@@ -23,6 +23,7 @@
 .newReleaseMovieTitle {
   min-height: 4rem;
   max-height: 4rem;
+  padding-left: 0;
 }
 
 .newStar {
@@ -90,6 +91,10 @@
 /*To get rating right aligned*/
 .rating {
   float: right;
+}
+
+.columns {
+  margin-bottom: 0 !important;
 }
 /* set movie poster div position to relative to get star in corner */
 .moviePosterDiv {

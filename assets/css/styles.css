@@ -21,17 +21,23 @@
   text-align: left;
 }
 .newReleaseMovieTitle {
-  padding-left: 0.5rem;
-}
-.newStar {
-  color: black;
+  min-height: 4rem;
+  max-height: 4rem;
 }
 
+.newStar {
+  color: black;
+  position: relative;
+  top: 5px;
+}
+.titleStarDiv {
+  min-height: 3rem;
+  max-height: 3rem;
+  position: relative;
+}
 /* carousel */
 .carousel h2 {
   text-align: center;
-  font-weight: bolder;
-  font-size: large;
 }
 
 .carousel img {
@@ -56,6 +62,30 @@
   background: lightgrey;
 }
 
+.overview {
+  transition: opacity 1s ease-in;
+  transition: max-height 0.25s ease-out;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.carousel-poster:hover .overview {
+  opacity: 1;
+  transition: max-height 0.75s ease-in;
+  max-height: 500px;
+}
+
+.slider-pagination .slider-page {
+  background: lightgrey;
+}
+
+.star-custom {
+  position: relative !important;
+  top: -365px !important;
+  right: -140px !important;
+}
+
 /* MOVIE SEARCH*/
 /*To get rating right aligned*/
 .rating {
@@ -64,6 +94,7 @@
 /* set movie poster div position to relative to get star in corner */
 .moviePosterDiv {
   position: relative;
+  cursor: pointer;
 }
 .star {
   position: absolute;
@@ -72,8 +103,14 @@
   color: white;
   filter: drop-shadow(2px 2px 2px black);
 }
-body{
-  background-image:url("./assets/images/background4.jpg");
+
+  .dropdown-content{
+  background-color: white;
   
-   
+}
+#title-drop{
+  font-size: 20px;
+  color:black;
+  text-decoration: underline;
+  font-family: "Limelight", cursive;
 }

@@ -335,14 +335,12 @@ function saveToWatchList(saveMovie) {
 }
 
 //when click on the movie poster go to site that shows streaming options
-$(document).on('click', '.moviePosterDiv', function () {
-     let movieId = $(this)[0].id;
-     console.log(event.target)
-     if (event.target = $('.star')) {
-         return;
-     }
+$(document).on('click', '.moviePosterDiv', function() {
+    // if user clicks on the star, return out of function
+    if (event.target.classList.contains('star')) return;
+    let movieId = $(this)[0].id;
     getStreamingOptions(movieId);
- })
+})
 
 
 //get streaming/ where to watch function

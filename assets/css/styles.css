@@ -126,3 +126,13 @@ h4{
 .modal-content {
   top: 30%;
 }
+
+/* concessions page */
+.searchedSnacks {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.food-tiles {
+  margin: 0 5px;
+}

@@ -139,52 +139,55 @@ function searchMovieByTitle(title) {
                 return response.json();
             })
             .then(function(response) {
-               //document element that will hold the movie posters
-                let moviesEl = document.querySelector(".posters")
-                //create a poster div for each movie
-                let moviePoster = document.createElement("div");
-                moviePoster.classList = 'column is-one-fifth moviePosterDiv';
-                moviePoster.id = movieId;
-                //create the image element
-                let posterImg = document.createElement("img");
-                posterImg.src = 'https://image.tmdb.org/t/p/original' + response.poster_path;
-                //append movie poster div to document element
-                moviesEl.appendChild(moviePoster);
-                // append image element to poster div
-                moviePoster.appendChild(posterImg);
-                // create a clickable favorite star element
-                let favoriteAnchor = document.createElement("a");
-                // create the star icon element
-                let favoriteIcon = document.createElement("i");
-                favoriteIcon.classList = 'far fa-star fa-large star';
-                // append the anchor to the movie poster
-                moviePoster.appendChild(favoriteAnchor);
-                // append the icon to the anchor 
-                favoriteAnchor.appendChild(favoriteIcon);
-                // get release date
-                let releaseDate = response.release_date;
-                // format the date into just the release year
-                let year = moment(releaseDate, "YYYY-MM-DD").format('YYYY');
-                //create span to hold the release year
-                let yearEl = document.createElement("span");
-                yearEl.textContent = "Released: " + year;
-                //append the year to the movie poster div
-                moviePoster.appendChild(yearEl);
-                // create movie rating span
-                let movieRating = document.createElement('span');
-                // add "rating" class so that there is space between the 2 spans
-                movieRating.classList = 'rating';
-                movieRating.textContent = response.vote_average + ' /10';
-                //append movie rating to the poster div
-                moviePoster.appendChild(movieRating);
+                if (response.poster_path) {
+                    //document element that will hold the movie posters
+                    let moviesEl = document.querySelector(".posters")
+                    //create a poster div for each movie
+                    let moviePoster = document.createElement("div");
+                    moviePoster.classList = 'column is-one-fifth moviePosterDiv';
+                    moviePoster.id = movieId;
+                    //create the image element
+                    let posterImg = document.createElement("img");
+                    posterImg.src = 'https://image.tmdb.org/t/p/original' + response.poster_path;
+                    //append movie poster div to document element
+                    moviesEl.appendChild(moviePoster);
+                    // append image element to poster div
+                    moviePoster.appendChild(posterImg);
+                    // create a clickable favorite star element
+                    let favoriteAnchor = document.createElement("a");
+                    // create the star icon element
+                    let favoriteIcon = document.createElement("i");
+                    favoriteIcon.classList = 'far fa-star fa-large star';
+                    // append the anchor to the movie poster
+                    moviePoster.appendChild(favoriteAnchor);
+                    // append the icon to the anchor 
+                    favoriteAnchor.appendChild(favoriteIcon);
+                    // get release date
+                    let releaseDate = response.release_date;
+                    // format the date into just the release year
+                    let year = moment(releaseDate, "YYYY-MM-DD").format('YYYY');
+                    //create span to hold the release year
+                    let yearEl = document.createElement("span");
+                    yearEl.textContent = "Released: " + year;
+                    //append the year to the movie poster div
+                    moviePoster.appendChild(yearEl);
+                    // create movie rating span
+                    let movieRating = document.createElement('span');
+                    // add "rating" class so that there is space between the 2 spans
+                    movieRating.classList = 'rating';
+                    movieRating.textContent = response.vote_average + ' /10';
+                    //append movie rating to the poster div
+                    moviePoster.appendChild(movieRating);
+                }
+                
             })
         }
-        // // selects search results section and unhides if hidden
-        // var searchSection = document.getElementById('search-section');
-        // console.log(searchSection);
-        // if (searchSection.style.display === "none") {
-        //     searchSection.style.display = "block";
-        // }
+        // selects search results section and unhides if hidden
+        var searchSection = document.getElementById('search-section');
+        console.log(searchSection);
+        if (searchSection.style.display === "none") {
+            searchSection.style.display = "block";
+        }
     })
     .catch(function (error) {
         modalText.textContent = 'Oops! Something went wrong!'
@@ -236,6 +239,8 @@ function carouselDisplay (results) {
         posterDivEl.className = 'carousel-poster'
         titleEl.textContent = results[i].title;
         imgEl.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + results[i].poster_path);
+        imgEl.className = 'carousel-img';
+        imgEl.id = results[i].id;
         ratingYearDiv.className = 'poster-footer'
         yearEl.className = 'carousel-year';
         yearEl.textContent = year;
@@ -274,6 +279,13 @@ function carouselStart () {
         autoplaySpeed: 3000
     });
 };
+
+
+// when click on the carousel poster go to site that shows streaming options
+$(document).on('click', '.carousel-img', function() {
+    let movieId = (this).id;
+    getStreamingOptions(movieId);
+})
 
 
 // call showNewRelease and carouselFetch function to run on page load

@@ -120,113 +120,6 @@ function searchMovieByTitle(title) {
         return;
     }
     // fetch movie search API
-    fetch(movieApiUrl)
-        .then(function (response) {
-            return response.json();
-        })
-  
-
-    .then(function(response) {
-        return response.json();
-    })
-    .then(function(response) {
-        // console.log(response)
-        let popularResults = response.results;
-        for (let i = 0; i < 4; i++) {
-            //get movie id
-            let movieId = popularResults[i].id;
-            //fetch with movie id to get vidoes
-            fetch('https://api.themoviedb.org/3/movie/' + movieId + movieApiKey + '&append_to_response=videos&language=en-US')
-            .then(function(response) {
-                return response.json()
-            })
-            .then(function(response) {
-                let videoArr = response.videos.results;
-                // defined an empty array to push elements with videos to
-                let newVideoArr = [];
-                // if the object had videos push to new video array
-                if (videoArr.length >= 1) {
-                    newVideoArr.push(videoArr);
-                    // create a for loop for newvideo array
-                    for (let i = 0; i < newVideoArr.length; i++) {
-                        //create div to hold video and year/rating
-                        let videoDiv = document.createElement("div");
-                        //append to document el
-                        newReleaseDiv.appendChild(videoDiv);
-                        // use bulma column classes
-                        videoDiv.classList = 'column';
-                        //create div to hold title and star
-                        let titleStarDiv = document.createElement('div');
-                        titleStarDiv.classList = 'columns'
-                        videoDiv.appendChild(titleStarDiv);
-                        // create an anchor element to hold the fav icon
-                        let favoriteAnchor = document.createElement('a');
-                        // create an icon element for favoriting
-                        let favoriteIcon = document.createElement('i');
-                        favoriteIcon.classList = 'far fa-star fa-large newStar column';
-                        //append the fav icon to fav anchor
-                        favoriteAnchor.appendChild(favoriteIcon);
-                        // append fav anchor to video div element
-                        titleStarDiv.appendChild(favoriteAnchor);
-                        // create title for video/ movie
-                        let titleEl = document.createElement("h2");
-                        titleEl.classList = 'newReleaseMovieTitle column';
-                        titleEl.textContent = response.title;
-                        //append the title to the video div
-                        titleStarDiv.appendChild(titleEl);
-                        // get video key to put in the url to embed the video 
-                        let videoKey = response.videos.results[0].key;
-                        let videoUrl = 'https://www.youtube.com/embed/' + videoKey;
-                        // create iframe element to display video
-                        let videoEl = document.createElement('iframe');
-                        videoEl.style = "display: block";
-                        videoEl.src = videoUrl;
-                        //append iframe to the div
-                        videoDiv.appendChild(videoEl);
-                        // get release date of movie
-
-                        let releaseDate = response.release_date;
-                        // format the date into just the release year
-                        let year = moment(releaseDate, "YYYY-MM-DD").format('YYYY');
-                        //create span to hold the release year
-                        let yearEl = document.createElement("span");
-                        yearEl.textContent = "Released: " + year;
-                        //append the year to the movie poster div
-                        moviePoster.appendChild(yearEl);
-                        // create movie rating span
-                        let movieRating = document.createElement('span');
-                        // add "rating" class so that there is space between the 2 spans
-                        movieRating.classList = 'rating';
-                        movieRating.textContent = response.vote_average + ' /10';
-                        //append movie rating to the poster div
-                        moviePoster.appendChild(movieRating);
-                    })
-            }
-        })
-        .catch(function (error) {
-            alert("Oops something went wrong!");
-        })
-        .catch(function(error) {
-            modalText.textContent = 'Oops! Something went wrong!'
-            modal.style.display = 'block';
-        })
-    }
-function searchMovieByTitle(title) {
-    //make heading for section
-    $(".searchResultsHeading").text('Search Results: ');
-    // clear the div so it clears every new search
-    $(".posters").html(" ");
-    //brings us to the section of the page that shows movies
-    window.location.href = "#searchedMovies";
-    // get user search value
-    let movieTitle = $('#searchMovie').val().trim();
-    // get movie api url
-    let movieApiUrl = 'https://api.themoviedb.org/3/search/movie' + movieApiKey + '&query=' + movieTitle;
-    // if nothing was entered, return out of function
-    if (!movieTitle) {
-        return;
-    }
-    // fetch movie search API
     fetch(movieApiUrl) 
     .then(function(response) {
         return response.json();
@@ -337,11 +230,7 @@ function carouselDisplay (results) {
         let year = moment(releaseDate, "YYYY-MM-DD").format('YYYY');
 
         // sets classes and text content for the elements
-
-      
-
         carouselDivEl.className = 'item-' + (i+1);
-
         posterDivEl.className = 'carousel-poster'
         titleEl.textContent = results[i].title;
         imgEl.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + results[i].poster_path);
@@ -349,9 +238,7 @@ function carouselDisplay (results) {
         yearEl.className = 'carousel-year';
         yearEl.textContent = year;
         starEl.className = 'far fa-star fa-large star star-custom';
-
         starEl.setAttribute('id', results[i].title);
-
         ratingEl.className = 'carousel-rating';
         ratingEl.textContent = "Rating: " + results[i].vote_average + "/10";
         overviewEl.className = 'overview';

@@ -239,6 +239,8 @@ function carouselDisplay (results) {
         posterDivEl.className = 'carousel-poster'
         titleEl.textContent = results[i].title;
         imgEl.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + results[i].poster_path);
+        imgEl.className = 'carousel-img';
+        imgEl.id = results[i].id;
         ratingYearDiv.className = 'poster-footer'
         yearEl.className = 'carousel-year';
         yearEl.textContent = year;

@@ -101,7 +101,8 @@ function showNewReleases() {
             }
         })
         .catch(function (error) {
-            alert("Oops! Something went wrong.")
+            modalText.textContent = "Oops! Something went wrong.";
+            modal.style.display = 'block';
         })
 }
 function searchMovieByTitle(title) {
@@ -293,7 +294,8 @@ carouselFetch();
         }
 
     });
-})
+
+
 $('.saveBtn').on('click', function () {
 
     $('input[type="text"]').each(function () {
@@ -332,7 +334,7 @@ function saveToWatchList(saveMovie) {
 }
 
 //when click on the movie poster go to site that shows streaming options
-$(document).on('click', '.moviePosterDiv', function () 
+$(document).on('click', '.moviePosterDiv', function () {
      let movieId = $(this)[0].id;
     getStreamingOptions(movieId);
  })
@@ -416,7 +418,8 @@ function searchByGenre() {
 
         })
         .catch(function (error) {
-            alert("Oops! Something went wrong.")
+            modalText.textContent = "Oops! Something went wrong.";
+            modal.style.display = 'block';
     })
 
 }
@@ -429,4 +432,7 @@ $('.genre-btn').on('click', function () {
 
 // show watchList on page load
 saveToWatchList("");
-
+//modal close
+$(document).on('click', closeModalBtn, function() {
+    modal.style.display = 'none';
+})

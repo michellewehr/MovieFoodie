@@ -13,6 +13,10 @@ const popularMovieApi = 'https://api.themoviedb.org/3/movie/popular' + movieApiK
 const discoverMovieApi = 'https://api.themoviedb.org/3/trending/movie/day' + movieApiKey + '&language=en-US&sort_by=popularity.desc';
 //get movie search button from document
 const movieSearchBtn = document.querySelector(".movieSearchBtn");
+// modal 
+const modal = document.querySelector('#catch-modal');
+const modalText = document.querySelector('.modal-text');
+const closeModalBtn = document.querySelector('#closeBtn');
 
 //POPULAR MOVIES TRAILER
 function showNewReleases() {
@@ -47,21 +51,25 @@ function showNewReleases() {
                         newReleaseDiv.appendChild(videoDiv);
                         // use bulma column classes
                         videoDiv.classList = 'column';
+                        //create div to hold title and star
+                        let titleStarDiv = document.createElement('div');
+                        titleStarDiv.classList = 'columns'
+                        videoDiv.appendChild(titleStarDiv);
                         // create an anchor element to hold the fav icon
                         let favoriteAnchor = document.createElement('a');
                         // create an icon element for favoriting
                         let favoriteIcon = document.createElement('i');
-                        favoriteIcon.classList = 'far fa-star fa-large newStar';
+                        favoriteIcon.classList = 'far fa-star fa-large newStar column';
                         //append the fav icon to fav anchor
                         favoriteAnchor.appendChild(favoriteIcon);
                         // append fav anchor to video div element
-                        videoDiv.appendChild(favoriteAnchor);
+                        titleStarDiv.appendChild(favoriteAnchor);
                         // create title for video/ movie
                         let titleEl = document.createElement("h2");
-                        titleEl.classList = 'newReleaseMovieTitle';
+                        titleEl.classList = 'newReleaseMovieTitle column';
                         titleEl.textContent = response.title;
                         //append the title to the video div
-                        videoDiv.appendChild(titleEl);
+                        titleStarDiv.appendChild(titleEl);
                         // get video key to put in the url to embed the video 
                         let videoKey = response.videos.results[0].key;
                         let videoUrl = 'https://www.youtube.com/embed/' + videoKey;
@@ -93,7 +101,8 @@ function showNewReleases() {
         }
         })
         .catch(function(error) {
-            alert("Oops! Something went wrong.")
+            modalText.textContent = 'Oops! Something went wrong!'
+            modal.style.display = 'block';
         })
     }
 function searchMovieByTitle(title) {
@@ -170,9 +179,16 @@ function searchMovieByTitle(title) {
                 moviePoster.appendChild(movieRating);
             })
         }
+        // selects search results section and unhides if hidden
+        var searchSection = document.getElementById('search-section');
+        console.log(searchSection);
+        if (searchSection.style.display === "none") {
+            searchSection.style.display = "block";
+        }
     })
     .catch(function(error) {
-        alert("Oops something went wrong!");
+        modalText.textContent = 'Oops! Something went wrong!'
+        modal.style.display = 'block';
     })
 }
 
@@ -287,7 +303,8 @@ function getStreamingOptions(id) {
          window.open(streamingOption, '_blank');
      })
      .catch(function(error) {
-         alert("We couldn't find watch options for your movie.")
+        modalText.textContent = "We couldnt find watch options for your selected movie.";
+        modal.style.display = 'block';
      })
 }
 
@@ -350,7 +367,8 @@ function searchByGenre() {
 
     })
     .catch(function(error) {
-        alert("Oops! Something went wrong.")
+        modalText.textContent = 'Oops! Something went wrong!'
+        modal.style.display = 'block';
     })
 
 }
@@ -359,4 +377,9 @@ function searchByGenre() {
 $('.genre-btn').on('click', function() {
    $('.genrePosters').html("");
    searchByGenre();
+})
+
+//modals
+$(document).on('click', closeModalBtn, function() {
+    modal.style.display = 'none';
 })

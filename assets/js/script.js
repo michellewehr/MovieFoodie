@@ -13,6 +13,10 @@ const popularMovieApi = 'https://api.themoviedb.org/3/movie/popular' + movieApiK
 const discoverMovieApi = 'https://api.themoviedb.org/3/trending/movie/day' + movieApiKey + '&language=en-US&sort_by=popularity.desc';
 //get movie search button from document
 const movieSearchBtn = document.querySelector(".movieSearchBtn");
+// modal 
+const modal = document.querySelector('#catch-modal');
+const modalText = document.querySelector('.modal-text');
+const closeModalBtn = document.querySelector('#closeBtn');
 
 //POPULAR MOVIES TRAILER
 function showNewReleases() {
@@ -97,7 +101,8 @@ function showNewReleases() {
         }
         })
         .catch(function(error) {
-            alert("Oops! Something went wrong.")
+            modalText.textContent = 'Oops! Something went wrong!'
+            modal.style.display = 'block';
         })
     }
 function searchMovieByTitle(title) {
@@ -176,7 +181,8 @@ function searchMovieByTitle(title) {
         }
     })
     .catch(function(error) {
-        alert("Oops something went wrong!");
+        modalText.textContent = 'Oops! Something went wrong!'
+        modal.style.display = 'block';
     })
 }
 
@@ -291,7 +297,8 @@ function getStreamingOptions(id) {
          window.open(streamingOption, '_blank');
      })
      .catch(function(error) {
-         alert("We couldn't find watch options for your movie.")
+        modalText.textContent = "We couldnt find watch options for your selected movie.";
+        modal.style.display = 'block';
      })
 }
 
@@ -354,7 +361,8 @@ function searchByGenre() {
 
     })
     .catch(function(error) {
-        alert("Oops! Something went wrong.")
+        modalText.textContent = 'Oops! Something went wrong!'
+        modal.style.display = 'block';
     })
 
 }
@@ -363,4 +371,9 @@ function searchByGenre() {
 $('.genre-btn').on('click', function() {
    $('.genrePosters').html("");
    searchByGenre();
+})
+
+//modals
+$(document).on('click', closeModalBtn, function() {
+    modal.style.display = 'none';
 })

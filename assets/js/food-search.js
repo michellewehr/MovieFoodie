@@ -34,7 +34,7 @@ const closeModalBtn = document.querySelector('#closeBtn');
             }
         })
         .catch(function (error) {
-            modalText.textContent = "Oops! Something went wrong.";
+            modalText.textContent = "Oh no! We cannot access recipe images for 1 or more of the searchd results.";
             modal.style.display = 'block';
         })
         }
@@ -44,7 +44,3 @@ const closeModalBtn = document.querySelector('#closeBtn');
 $(document).on('click', closeModalBtn, function() {
     modal.style.display = 'none';
 })
-        
-        
-
-        639168

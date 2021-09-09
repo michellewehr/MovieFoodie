@@ -1,70 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css">
-    <script src="https://kit.fontawesome.com/a14d8b8912.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./assets/css/styles.css">
-    <title>Movie Foodie</title>
-</head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css">
+  <script src="https://kit.fontawesome.com/a14d8b8912.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <title>Movie Foodie</title>
+  </head>
+
 <body>
   <div class="container is-fluid">
     <!--nav bar start-->
-      <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="container">
-            <div class="navbar-brand">
-              <a class="navbar-item" href="#">
-              <span class="title appName">
-                <span class="icon"><i class="fas fa-film"  style="margin-right: 1rem;"></i></span>
-                MOVIE FOODIE
-              </span>
-                </a>
-                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                  <span aria-hidden="true"></span>
-                  <span aria-hidden="true"></span>
-                  <span aria-hidden="true"></span>
-                </a>
-            </div>
-          <div class="navbar-menu" id="nav-links">
-            <div class="navbar-end">
-              <a class="navbar-item" href="#watchlist">
-                Watchlist
-              </a>
-              <a class="navbar-item" href="#movies">
-                Movie Genres
-              </a>
-              <a class="navbar-item" href="./concessions.html" target="_blank">
-                Concession Stand
-              </a>
-              <div class="navbar-item">
-              <input type="text" name="searchMovie" id="searchMovie" class="input" placeholder="Search by Movie Title">
+   <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="#">
+            <span class="title appName">
+              <span class="icon"><i class="fas fa-film" style="margin-right: 1rem;"></i></span>
+              MOVIE FOODIE
+            </span>
+          </a>
+          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+            data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+        <div class="navbar-menu" id="nav-links">
+          <div class="navbar-end">
+            <a class="navbar-item" href="#watchlist">
+              <div class="dropdown is-hoverable">
+                <div class="dropdown-trigger">
+                  <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                    <span>Watch List</span>
+                    <span class="icon is-small">
+                      <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                  </button>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                  <div class="dropdown-content" id="title-drop">
+                    <h4>Saved for later</h4>
+                    <div class="dropdown-item">
+                      <a id="watchLater0" href=""></a>
+                    </div>
+                    <div class="dropdown-item">
+                      <a id="watchLater1" href=""></a>
+                    </div>
+                    <div class="dropdown-item">
+                      <a id="watchLater2" href=""></a>
+                    </div>
+                    <div class="dropdown-item">
+                      <a id="watchLater3" href=""></a>
+                    </div>
+                    <div id="watchLater4" class="dropdown-item">
+                      <a href=""></a>
+                    </div>
+                    <div class="dropdown-item">
+                      <a id="watchLater5" href=""></a>
+                    </div>
+                    <div class="dropdown-item">
+                      <a id="watchLater6" href=""></a>
+                    </div>
+                    <div class="dropdown-item">
+                      <a id="watchLater7" href=""></a>
+                    </div>
+                    <div class="dropdown-item">
+                      <a id="watchLater8" href=""></a>
+                    </div>
+                    <div class="dropdown-item">
+                      <a id="watchLater9" href=""></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a class="navbar-item" href="#movies">
+              Movies
+            </a>
+            <a class="navbar-item" href="#concessions">
+              Concession Stand
+            </a>
+            <div class="navbar-item">
+             <input type="text" name="searchMovie" id="searchMovie" class="input" placeholder="Search by Movie Title">
               <div class="field">
                 <div class="control">
                   <button class="button movieSearchBtn" onclick="searchMovieByTitle()">Search</button>
                 </div>
               </div>
-              </div>
             </div>
           </div>
         </div>
-      </nav>
-      <!--nav bar end-->
-  </div>
-
-  <!--movie search div start-->
-  <section class="section" id="search-section" style="display: none;">
-    <div class="container posterContainer">
-      <h2 class="newReleaseHeading is-2 searchResultsHeading"></h2>
-      <div class="posters columns is-multiline"  id="searchedMovies"></div>
-    </div>
-  </section>
-  <!--movie search div end-->
+     </div>
+    </nav>
+ </div>
+    <!--nav bar end-->
 
   <section class="section">
     <div class="container">
@@ -73,10 +111,11 @@
       <div id="carousel-hero" class="carousel">
       </div>
       <!-- end carousel container -->
+
     </div>
   </section>
 
-  
+
   <section class="section">
     <div class="container">
       <h2 class="newReleaseHeading is-2">New Releases</h2>
@@ -84,9 +123,16 @@
     </div>
   </section>
   <!--new release feature end-->
-  
-    <!--Movie Genres-->
-    <section class="section" id="movies">
+  <!--movie search div start-->
+  <section class="section">
+    <div class="container posterContainer">
+      <h2 class="newReleaseHeading is-2 searchResultsHeading"></h2>
+      <div class="posters columns is-multiline" id="searchedMovies"></div>
+    </div>
+  </section>
+  <!--movie search div end-->
+  <!--Movie Genres-->
+  <section class="section" id="movies">
       <div class="field container">
         <h2 class="newReleaseHeading is-2">Search by Genre</h2>
             <label for="select" class="subtitle is-4">Select a movie genre: </label>
@@ -114,8 +160,8 @@
                 </select>
             </div>
             <button class="button genre-btn">Search for Movies</button>
-    </div>
-    <div class="genreSearchResults container">
+        </div>
+      <div class="genreSearchResults container">
         <div class="genrePosters columns is-multiline"  id="genreSearchedMovies"></div>
     </div>
   </section>
@@ -146,4 +192,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>

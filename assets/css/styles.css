@@ -107,6 +107,19 @@
   right: 1rem;
   color: white;
   filter: drop-shadow(2px 2px 2px black);
+
+}
+
+.dropdown-content{
+  background-color: white;
+  font-family: sans-serif;
+  
+}
+h4{
+  font-size: 20px;
+  color:black;
+  text-decoration: underline;
+  font-family: "Limelight", cursive;
 }
 
 /*Modal*/

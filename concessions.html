@@ -13,10 +13,41 @@
   <title>Concessions</title>
 </head>
 <body>
-  
-  <div class="container">
-    <h2 class="newReleaseHeading">Concessions</h2>
+  <!--navbar-->
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="./index.html">
+          <span class="title appName">
+            <span class="icon"><i class="fas fa-film" style="margin-right: 1rem;"></i></span>
+            MOVIE FOODIE
+          </span>
+        </a>
   </div>
+  </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="newReleaseHeading">Concessions</h2>
+    </div>
+    <div class="featured-snack">
+      <a href=""><img src="https://spoonacular.com/recipeImages/639168-312x231.jpg" alt=""></a>
+    </div>
+
+    <div class="field">
+      <label for="searchSnack">What can we get you?</label>
+      <input type="text" name="searchSnack" id="searchSnack" class="input" placeholder="Search by Ingredient">
+      <div class="field">
+        <div class="control">
+          <button class="button movieSearchBtn" onclick="getSnack()">Search</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="searchedSnacks columns"></div>
+  </section>
+
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

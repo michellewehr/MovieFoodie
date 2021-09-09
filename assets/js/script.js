@@ -281,6 +281,13 @@ function carouselStart () {
 };
 
 
+// when click on the carousel poster go to site that shows streaming options
+$(document).on('click', '.carousel-img', function() {
+    let movieId = (this).id;
+    getStreamingOptions(movieId);
+})
+
+
 // call showNewRelease and carouselFetch function to run on page load
 showNewReleases();
 carouselFetch();

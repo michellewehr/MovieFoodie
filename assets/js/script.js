@@ -12,6 +12,10 @@ const popularMovieApi = 'https://api.themoviedb.org/3/movie/popular' + movieApiK
 const discoverMovieApi = 'https://api.themoviedb.org/3/trending/movie/day' + movieApiKey + '&language=en-US&sort_by=popularity.desc';
 //get movie search button from document
 const movieSearchBtn = document.querySelector(".movieSearchBtn");
+// modal 
+const modal = document.querySelector('#catch-modal');
+const modalText = document.querySelector('.modal-text');
+const closeModalBtn = document.querySelector('#closeBtn');
 
 //POPULAR MOVIES TRAILER
 function showNewReleases() {
@@ -203,7 +207,8 @@ function searchMovieByTitle(title) {
             alert("Oops something went wrong!");
         })
         .catch(function(error) {
-            alert("Oops! Something went wrong.")
+            modalText.textContent = 'Oops! Something went wrong!'
+            modal.style.display = 'block';
         })
     }
 function searchMovieByTitle(title) {
@@ -279,9 +284,16 @@ function searchMovieByTitle(title) {
                 moviePoster.appendChild(movieRating);
             })
         }
+        // selects search results section and unhides if hidden
+        var searchSection = document.getElementById('search-section');
+        console.log(searchSection);
+        if (searchSection.style.display === "none") {
+            searchSection.style.display = "block";
+        }
     })
     .catch(function(error) {
-        alert("Oops something went wrong!");
+        modalText.textContent = 'Oops! Something went wrong!'
+        modal.style.display = 'block';
     })
 }
 
@@ -378,8 +390,6 @@ function carouselStart () {
 // call showNewRelease and carouselFetch function to run on page load
 showNewReleases();
 carouselFetch();
-
-
 // when the favorite star is clicked on it will change to a solid star
     $(document).on('click', '.fa-star', function () {
         // if movie id already exists in local storage, delete it
@@ -435,30 +445,31 @@ function saveToWatchList(saveMovie) {
 }
 
 //when click on the movie poster go to site that shows streaming options
-$(document).on('click', '.moviePosterDiv', function () {
-=======
-$(document).on('click', '.fa-star', function() {
-    console.log($(this));
-    $(this).removeClass("far");
-    $(this).addClass("fas");
+$(document).on('click', '.moviePosterDiv', function () 
+     let movieId = $(this)[0].id;
+    getStreamingOptions(movieId);
  })
 
 
 //get streaming/ where to watch function
 function getStreamingOptions(id) {
     const viewUrl = 'https://api.themoviedb.org/3/movie/' + id + '/watch/providers' + movieApiKey + '&watch_region=us&language=en-US';
-  //fetch the view Url
-    fetch(viewUrl)
-        .then(function (response) {
-            return response.json()
-        })
-        .then(function (response) {
-            const streamingOption = response.results.US.link;
-            window.open(streamingOption, '_blank');
-        })
-        .catch(function (error) {
-            alert("We couldn't find watch options for your movie.")
-        })
+     //fetch the view Url
+     fetch(viewUrl) 
+     .then(function(response) {
+         return response.json()
+     })
+     .then(function(response){
+        //  console.log(response.results.US);
+         const streamingOption = response.results.US.link;
+         window.open(streamingOption, '_blank');
+     })
+     .catch(function(error) {
+        modalText.textContent = "We couldnt find watch options for your selected movie.";
+        modal.style.display = 'block';
+     })
+}
+
 
 
 //Search by genre function
@@ -520,6 +531,7 @@ function searchByGenre() {
         .catch(function (error) {
             alert("Oops! Something went wrong.")
     })
+
 }
 
 ///genre search

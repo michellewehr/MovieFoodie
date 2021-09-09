@@ -23,6 +23,7 @@
 .newReleaseMovieTitle {
   min-height: 4rem;
   max-height: 4rem;
+  padding-left: 0;
 }
 
 .newStar {
@@ -91,6 +92,10 @@
 .rating {
   float: right;
 }
+
+.columns {
+  margin-bottom: 0 !important;
+}
 /* set movie poster div position to relative to get star in corner */
 .moviePosterDiv {
   position: relative;
@@ -115,4 +120,9 @@ h4{
   color:black;
   text-decoration: underline;
   font-family: "Limelight", cursive;
+}
+
+/*Modal*/
+.modal-content {
+  top: 30%;
 }

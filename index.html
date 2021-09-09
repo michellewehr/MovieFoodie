@@ -18,7 +18,7 @@
 <body>
   <div class="container is-fluid">
     <!--nav bar start-->
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+   <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item" href="#">
@@ -90,7 +90,7 @@
               Concession Stand
             </a>
             <div class="navbar-item">
-              <input type="text" name="searchMovie" id="searchMovie" class="input" placeholder="Search by Movie Title">
+             <input type="text" name="searchMovie" id="searchMovie" class="input" placeholder="Search by Movie Title">
               <div class="field">
                 <div class="control">
                   <button class="button movieSearchBtn" onclick="searchMovieByTitle()">Search</button>
@@ -99,11 +99,11 @@
             </div>
           </div>
         </div>
-      </div>
+     </div>
     </nav>
  </div>
     <!--nav bar end-->
- 
+
   <section class="section">
     <div class="container">
       <h2 class="newReleaseHeading is-2">Trending</h2>
@@ -132,7 +132,7 @@
   </section>
   <!--movie search div end-->
   <!--Movie Genres-->
-    <section class="section" id="movies">
+  <section class="section" id="movies">
       <div class="field container">
         <h2 class="newReleaseHeading is-2">Search by Genre</h2>
             <label for="select" class="subtitle is-4">Select a movie genre: </label>
@@ -166,7 +166,27 @@
     </div>
   </section>
   <!--movie genre end-->
-
+  <!--Modal-->
+    <div class="modal" id="catch-modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        
+            <section class="section modal-wrap">
+              <div class="box">
+                <article class="media">
+                  <div class="media-content">
+                    <div class="content">
+                      <p class="modal-text"></p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+       
+      </div>
+      <button class="modal-close is-large closeBtn" aria-label="close"></button>
+    </div>
+  <!--modal end-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script>

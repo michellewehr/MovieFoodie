@@ -297,7 +297,7 @@ function getStreamingOptions(id) {
          window.open(streamingOption, '_blank');
      })
      .catch(function(error) {
-        modalText.textContent = "We couldnt find watch options for your selected movie.";
+        modalText.textContent = "We couldnt find watch options for your selected movie. Your selected movie may still be in theaters.";
         modal.style.display = 'block';
      })
 }

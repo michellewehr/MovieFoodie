@@ -106,6 +106,7 @@ function showNewReleases() {
         })
 }
 function searchMovieByTitle(title) {
+    // add section to searched movie section to give it that styling
     //make heading for section
     $(".searchResultsHeading").text('Search Results: ');
     // clear the div so it clears every new search
@@ -178,12 +179,12 @@ function searchMovieByTitle(title) {
                 moviePoster.appendChild(movieRating);
             })
         }
-        // selects search results section and unhides if hidden
-        var searchSection = document.getElementById('search-section');
-        console.log(searchSection);
-        if (searchSection.style.display === "none") {
-            searchSection.style.display = "block";
-        }
+        // // selects search results section and unhides if hidden
+        // var searchSection = document.getElementById('search-section');
+        // console.log(searchSection);
+        // if (searchSection.style.display === "none") {
+        //     searchSection.style.display = "block";
+        // }
     })
     .catch(function (error) {
         modalText.textContent = 'Oops! Something went wrong!'

@@ -185,7 +185,7 @@ function searchMovieByTitle(title) {
             searchSection.style.display = "block";
         }
     })
-    .catch(function(error) {
+    .catch(function (error) {
         modalText.textContent = 'Oops! Something went wrong!'
         modal.style.display = 'block';
     })

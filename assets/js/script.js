@@ -101,10 +101,12 @@ function showNewReleases() {
             }
         })
         .catch(function (error) {
-            alert("Oops! Something went wrong.")
+            modalText.textContent = "Oops! Something went wrong.";
+            modal.style.display = 'block';
         })
 }
 function searchMovieByTitle(title) {
+    // add section to searched movie section to give it that styling
     //make heading for section
     $(".searchResultsHeading").text('Search Results: ');
     // clear the div so it clears every new search
@@ -177,14 +179,14 @@ function searchMovieByTitle(title) {
                 moviePoster.appendChild(movieRating);
             })
         }
-        // selects search results section and unhides if hidden
-        var searchSection = document.getElementById('search-section');
-        console.log(searchSection);
-        if (searchSection.style.display === "none") {
-            searchSection.style.display = "block";
-        }
+        // // selects search results section and unhides if hidden
+        // var searchSection = document.getElementById('search-section');
+        // console.log(searchSection);
+        // if (searchSection.style.display === "none") {
+        //     searchSection.style.display = "block";
+        // }
     })
-    .catch(function(error) {
+    .catch(function (error) {
         modalText.textContent = 'Oops! Something went wrong!'
         modal.style.display = 'block';
     })
@@ -293,7 +295,8 @@ carouselFetch();
         }
 
     });
-})
+
+
 $('.saveBtn').on('click', function () {
 
     $('input[type="text"]').each(function () {
@@ -332,7 +335,7 @@ function saveToWatchList(saveMovie) {
 }
 
 //when click on the movie poster go to site that shows streaming options
-$(document).on('click', '.moviePosterDiv', function () 
+$(document).on('click', '.moviePosterDiv', function () {
      let movieId = $(this)[0].id;
     getStreamingOptions(movieId);
  })
@@ -416,7 +419,8 @@ function searchByGenre() {
 
         })
         .catch(function (error) {
-            alert("Oops! Something went wrong.")
+            modalText.textContent = "Oops! Something went wrong.";
+            modal.style.display = 'block';
     })
 
 }
@@ -429,4 +433,7 @@ $('.genre-btn').on('click', function () {
 
 // show watchList on page load
 saveToWatchList("");
-
+//modal close
+$(document).on('click', closeModalBtn, function() {
+    modal.style.display = 'none';
+})

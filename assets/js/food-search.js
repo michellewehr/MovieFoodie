@@ -20,6 +20,7 @@ const closeModalBtn = document.querySelector('#closeBtn');
                 let resultsArr = response.results;
                     for (let i = 0; i < 4; i++) {
                     let results = document.createElement('div');
+                    results.className = 'food-tiles';
                     let snackAnchor = document.createElement('a');
                     snackAnchor.href = resultsArr[i].sourceUrl;
                     snackAnchor.target = '_blank';

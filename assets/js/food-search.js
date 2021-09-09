@@ -16,8 +16,12 @@
                 let resultsArr = response.results;
                     for (let i = 0; i < 4; i++) {
                     let results = document.createElement('div');
+                    // let snackAnchor = document.createElement('a');
                     let snackImg = document.createElement('img');
                     snackImg.src = resultsArr[i].image;
+                    let snackTitle = document.createElement('h2');
+                    snackTitle.textContent = resultsArr[i].title;
+                    results.appendChild(snackTitle);
                     results.appendChild(snackImg);
                     snackResults.appendChild(results);
             }

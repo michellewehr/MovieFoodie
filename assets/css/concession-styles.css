@@ -1,0 +1,138 @@
+/*Nav Bar */
+.appName,
+.newReleaseHeading {
+  font-family: "Limelight", cursive;
+}
+
+/*new release features*/
+.newReleaseHeading {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  border-bottom: 1px solid lightgrey;
+}
+.popularRating {
+  display: inline;
+  margin-left: 10rem;
+}
+
+.yearEl,
+.newReleaseMovieTitle {
+  display: inline;
+  text-align: left;
+}
+.newReleaseMovieTitle {
+  min-height: 4rem;
+  max-height: 4rem;
+  padding-left: 0;
+}
+
+.newStar {
+  color: black;
+  position: relative;
+  top: 5px;
+}
+.titleStarDiv {
+  min-height: 3rem;
+  max-height: 3rem;
+  position: relative;
+}
+/* carousel */
+.carousel h2 {
+  text-align: center;
+}
+
+.carousel img {
+  display: block;
+  margin: 0 auto;
+}
+
+.carousel-poster {
+  display: block;
+  margin: 0 auto;
+  width: 250px;
+}
+
+.poster-footer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.slider-pagination .slider-page {
+  background: lightgrey;
+}
+
+.overview {
+  transition: opacity 1s ease-in;
+  transition: max-height 0.25s ease-out;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.carousel-poster:hover .overview {
+  opacity: 1;
+  transition: max-height 0.75s ease-in;
+  max-height: 500px;
+}
+
+.slider-pagination .slider-page {
+  background: lightgrey;
+}
+
+.star-custom {
+  position: relative !important;
+  top: -365px !important;
+  right: -140px !important;
+}
+
+/* MOVIE SEARCH*/
+/*To get rating right aligned*/
+.rating {
+  float: right;
+}
+
+.columns {
+  margin-bottom: 0 !important;
+}
+/* set movie poster div position to relative to get star in corner */
+.moviePosterDiv {
+  position: relative;
+  cursor: pointer;
+}
+.star {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  color: white;
+  filter: drop-shadow(2px 2px 2px black);
+
+}
+
+.dropdown-content{
+  background-color: white;
+  font-family: sans-serif;
+  
+}
+h4{
+  font-size: 20px;
+  color:black;
+  text-decoration: underline;
+  font-family: "Limelight", cursive;
+}
+
+/*Modal*/
+.modal-content {
+  top: 30%;
+}
+
+/* concessions page */
+.searchedSnacks {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.food-tiles {
+  margin: 0 5px;
+}

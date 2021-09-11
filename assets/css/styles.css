@@ -140,6 +140,15 @@ h4{
 
 /* footer styling */
 
+.footer {
+  padding-top: 6rem;
+  padding-bottom: 3rem;
+}
+
 .level {
   align-items: flex-start;
+}
+
+.image {
+  margin: 0 auto;
 }

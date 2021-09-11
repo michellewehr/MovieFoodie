@@ -136,3 +136,21 @@ h4{
 .food-tiles {
   margin: 0 5px;
 }
+
+
+/* footer styling */
+
+.footer {
+  padding-top: 6rem;
+  padding-bottom: 3rem;
+}
+
+.level {
+  border-top: 1px solid lightgray;
+  padding-top: 1rem;
+  align-items: flex-start;
+}
+
+.image {
+  margin: 0 auto;
+}

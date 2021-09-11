@@ -146,6 +146,8 @@ h4{
 }
 
 .level {
+  border-top: 1px solid lightgray;
+  padding-top: 1rem;
   align-items: flex-start;
 }
 

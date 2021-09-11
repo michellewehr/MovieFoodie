@@ -136,3 +136,8 @@ h4{
 .food-tiles {
   margin: 0 5px;
 }
+
+.featured-snack {
+  font-size: 20px;
+  font-weight: bold;
+}

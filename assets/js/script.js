@@ -2,8 +2,8 @@
 const burgerIcon = document.querySelector('.burger');
 const navbarMenu = document.querySelector('#nav-links');
 //attach event listener when click burger icon to toggler is-active class
-burgerIcon.addEventListener('click', function() {
-navbarMenu.classList.toggle('is-active');
+burgerIcon.addEventListener('click', function () {
+    navbarMenu.classList.toggle('is-active');
 })
 //get html element to append all elements for the video
 const newReleaseDiv = document.querySelector(".newReleases");
@@ -58,8 +58,17 @@ function showNewReleases() {
                                 let favoriteAnchor = document.createElement('a');
                                 // create an icon element for favoriting
                                 let favoriteIcon = document.createElement('i');
-                                favoriteIcon.classList = 'far fa-star fa-large newStar column';
+                                if (localStorage.getItem(response.title) !== null) {
+                                    favoriteIcon.classList = 'fas fa-star fa-large newStar column';
+                                    //if not, save to watch list
+                                } else {
+                                    favoriteIcon.classList = 'far fa-star fa-large newStar column';
+                                }
                                 favoriteIcon.setAttribute('id', response.title)
+                                //append the fav icon to fav anchor
+                                favoriteAnchor.appendChild(favoriteIcon);
+                                // append fav anchor to video div element
+                                titleStarDiv.appendChild(favoriteAnchor);
                                 //append the fav icon to fav anchor
                                 favoriteAnchor.appendChild(favoriteIcon);
                                 // append fav anchor to video div element
@@ -122,77 +131,83 @@ function searchMovieByTitle(title) {
         return;
     }
     // fetch movie search API
-    fetch(movieApiUrl) 
-    .then(function(response) {
-        return response.json();
-    })
-    .then(function(response) {
-        // let resultArr = [];
-        let resultArr = response.results;
-        // console.log(resultArr)
-        for (let i = 0; i < resultArr.length; i++) {
-            let movieId = response.results[i].id;
-            //use movieId to run streamingOptions function 
-            // streamingOptions(movieId);
-            fetch('https://api.themoviedb.org/3/movie/' + movieId + movieApiKey)
-            .then(function(response) {
-                return response.json();
-            })
-            .then(function(response) {
-                if (response.poster_path) {
-                    //document element that will hold the movie posters
-                    let moviesEl = document.querySelector(".posters")
-                    //create a poster div for each movie
-                    let moviePoster = document.createElement("div");
-                    moviePoster.classList = 'column is-one-fifth moviePosterDiv';
-                    moviePoster.id = movieId;
-                    //create the image element
-                    let posterImg = document.createElement("img");
-                    posterImg.src = 'https://image.tmdb.org/t/p/original' + response.poster_path;
-                    //append movie poster div to document element
-                    moviesEl.appendChild(moviePoster);
-                    // append image element to poster div
-                    moviePoster.appendChild(posterImg);
-                    // create a clickable favorite star element
-                    let favoriteAnchor = document.createElement("a");
-                    // create the star icon element
-                    let favoriteIcon = document.createElement("i");
-                    favoriteIcon.classList = 'far fa-star fa-large star';
-                    // append the anchor to the movie poster
-                    moviePoster.appendChild(favoriteAnchor);
-                    // append the icon to the anchor 
-                    favoriteAnchor.appendChild(favoriteIcon);
-                    // get release date
-                    let releaseDate = response.release_date;
-                    // format the date into just the release year
-                    let year = moment(releaseDate, "YYYY-MM-DD").format('YYYY');
-                    //create span to hold the release year
-                    let yearEl = document.createElement("span");
-                    yearEl.textContent = "Released: " + year;
-                    //append the year to the movie poster div
-                    moviePoster.appendChild(yearEl);
-                    // create movie rating span
-                    let movieRating = document.createElement('span');
-                    // add "rating" class so that there is space between the 2 spans
-                    movieRating.classList = 'rating';
-                    movieRating.textContent = response.vote_average + ' /10';
-                    //append movie rating to the poster div
-                    moviePoster.appendChild(movieRating);
-                }
-                
-            })
-        }
-        // selects search results section and unhides if hidden
-        var searchSection = document.getElementById('search-section');
-        console.log(searchSection);
-        if (searchSection.style.display === "none") {
-            searchSection.style.display = "block";
-        }
-    })
-    .catch(function (error) {
-        modalText.textContent = 'Oops! Something went wrong!'
-        modal.style.display = 'block';
-    })
+    fetch(movieApiUrl)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (response) {
+            // let resultArr = [];
+            let resultArr = response.results;
+            // console.log(resultArr)
+            for (let i = 0; i < resultArr.length; i++) {
+                let movieId = response.results[i].id;
+                //use movieId to run streamingOptions function 
+                // streamingOptions(movieId);
+                fetch('https://api.themoviedb.org/3/movie/' + movieId + movieApiKey)
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (response) {
+                        if (response.poster_path) {
+                            //document element that will hold the movie posters
+                            let moviesEl = document.querySelector(".posters")
+                            //create a poster div for each movie
+                            let moviePoster = document.createElement("div");
+                            moviePoster.classList = 'column is-one-fifth moviePosterDiv';
+                            moviePoster.id = movieId;
+                            //create the image element
+                            let posterImg = document.createElement("img");
+                            posterImg.src = 'https://image.tmdb.org/t/p/original' + response.poster_path;
+                            //append movie poster div to document element
+                            moviesEl.appendChild(moviePoster);
+                            // append image element to poster div
+                            moviePoster.appendChild(posterImg);
+                            // create a clickable favorite star element
+                            let favoriteAnchor = document.createElement("a");
+                            // create the star icon element
+                            let favoriteIcon = document.createElement("i");
+                            if (localStorage.getItem(response.title) !== null) {
+                                favoriteIcon.classList = 'fas fa-star fa-large star star-custom';
+                                //if not, save to watch list
+                            } else {
+                                favoriteIcon.classList = 'far fa-star fa-large star star-custom';
+                            }
+                            favoriteIcon.setAttribute('id', response.title)
+                            // append the anchor to the movie poster
+                            moviePoster.appendChild(favoriteAnchor);
+                            // append the icon to the anchor 
+                            favoriteAnchor.appendChild(favoriteIcon);
+                            // get release date
+                            let releaseDate = response.release_date;
+                            // format the date into just the release year
+                            let year = moment(releaseDate, "YYYY-MM-DD").format('YYYY');
+                            //create span to hold the release year
+                            let yearEl = document.createElement("span");
+                            yearEl.textContent = "Released: " + year;
+                            //append the year to the movie poster div
+                            moviePoster.appendChild(yearEl);
+                            // create movie rating span
+                            let movieRating = document.createElement('span');
+                            // add "rating" class so that there is space between the 2 spans
+                            movieRating.classList = 'rating';
+                            movieRating.textContent = response.vote_average + ' /10';
+                            //append movie rating to the poster div
+                            moviePoster.appendChild(movieRating);
+                        }
+
+                    })
+            }
+            // selects search results section and unhides if hidden
+            var searchSection = document.getElementById('search-section');
+            console.log(searchSection);
+            if (searchSection.style.display === "none") {
+                searchSection.style.display = "block";
+            }
+        })
+        .catch(function (error) {
+            modalText.textContent = 'Oops! Something went wrong!'
+            modal.style.display = 'block';
+        })
 }
 
 
@@ -211,7 +226,7 @@ function carouselFetch() {
 
 }
 
-function carouselDisplay (results) {
+function carouselDisplay(results) {
 
     // selects the div element that will hold the carousel
     let carouselEl = document.querySelector("#carousel-hero");
@@ -235,7 +250,7 @@ function carouselDisplay (results) {
         let year = moment(releaseDate, "YYYY-MM-DD").format('YYYY');
 
         // sets classes and text content for the elements
-        carouselDivEl.className = 'item-' + (i+1);
+        carouselDivEl.className = 'item-' + (i + 1);
         posterDivEl.className = 'carousel-poster'
         titleEl.textContent = results[i].title;
         imgEl.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + results[i].poster_path);
@@ -244,7 +259,14 @@ function carouselDisplay (results) {
         ratingYearDiv.className = 'poster-footer'
         yearEl.className = 'carousel-year';
         yearEl.textContent = year;
-        starEl.className = 'far fa-star fa-large star star-custom';
+        // starEl.className = 'far fa-star fa-large star star-custom';
+        if (localStorage.getItem(results[i].title) !== null) {
+            starEl.className = 'fas fa-star fa-large star star-custom';
+            //if not, save to watch list
+        } else {
+            starEl.className = 'far fa-star fa-large star star-custom';
+        }
+
         starEl.setAttribute('id', results[i].title);
         ratingEl.className = 'carousel-rating';
         ratingEl.textContent = "Rating: " + results[i].vote_average + "/10";
@@ -260,7 +282,7 @@ function carouselDisplay (results) {
         ratingYearDiv.appendChild(overviewEl);
         posterDivEl.appendChild(ratingYearDiv);
         carouselDivEl.appendChild(posterDivEl);
-        carouselEl.appendChild(carouselDivEl);        
+        carouselEl.appendChild(carouselDivEl);
 
     }
 
@@ -270,7 +292,7 @@ function carouselDisplay (results) {
 }
 
 // carousel function
-function carouselStart () {
+function carouselStart() {
     bulmaCarousel.attach('#carousel-hero', {
         slidesToScroll: 1,
         slidesToShow: 1,
@@ -282,7 +304,7 @@ function carouselStart () {
 
 
 // when click on the carousel poster go to site that shows streaming options
-$(document).on('click', '.carousel-img', function() {
+$(document).on('click', '.carousel-img', function () {
     let movieId = (this).id;
     getStreamingOptions(movieId);
 })
@@ -292,21 +314,21 @@ $(document).on('click', '.carousel-img', function() {
 showNewReleases();
 carouselFetch();
 // when the favorite star is clicked on it will change to a solid star
-    $(document).on('click', '.fa-star', function () {
-        // if movie id already exists in local storage, delete it
-        if (localStorage.getItem(this.id) !== null) {
-            localStorage.removeItem(this.id);
-            saveToWatchList("");
-            $(this).addClass("far");
-            $(this).removeClass("fas");
-            //if not, save to watch list
-        } else {
-            saveToWatchList(this.id)
-            $(this).removeClass("far");
-            $(this).addClass("fas");
-        }
+$(document).on('click', '.fa-star', function () {
+    // if movie id already exists in local storage, delete it
+    if (localStorage.getItem(this.id) !== null) {
+        localStorage.removeItem(this.id);
+        saveToWatchList("");
+        $(this).addClass("far");
+        $(this).removeClass("fas");
+        //if not, save to watch list
+    } else {
+        saveToWatchList(this.id)
+        $(this).removeClass("far");
+        $(this).addClass("fas");
+    }
 
-    });
+});
 
 
 $('.saveBtn').on('click', function () {
@@ -326,28 +348,28 @@ function saveToWatchList(saveMovie) {
 
     //save title to localStorage
     if ((saveMovie !== "") && (saveMovie !== undefined)) {
-        localStorage.setItem(saveMovie, "MovieFoodie") 
+        localStorage.setItem(saveMovie, "MovieFoodie")
     }
-        // get one movie title
-        var watchListStorage = window.localStorage;
-        let j = 0;
-        // get movie titles from local storage
-        for (let i = 0; i < localStorage.length; i++) {
-             //filter through local storage to only grab relevant history
-            if (watchListStorage.getItem(watchListStorage.key(i)) == "MovieFoodie") {
-                var listMovie = document.getElementById("watchLater" + j);
-                j++;
-                // push movie title to watch list
-                listMovie.innerHTML = watchListStorage.key(i);
+    // get one movie title
+    var watchListStorage = window.localStorage;
+    let j = 0;
+    // get movie titles from local storage
+    for (let i = 0; i < localStorage.length; i++) {
+        //filter through local storage to only grab relevant history
+        if (watchListStorage.getItem(watchListStorage.key(i)) == "MovieFoodie") {
+            var listMovie = document.getElementById("watchLater" + j);
+            j++;
+            // push movie title to watch list
+            listMovie.innerHTML = watchListStorage.key(i);
 
 
 
-            }
         }
+    }
 }
 
 //when click on the movie poster go to site that shows streaming options
-$(document).on('click', '.moviePosterDiv', function() {
+$(document).on('click', '.moviePosterDiv', function () {
     // if user clicks on the star, return out of function
     if (event.target.classList.contains('star')) return;
     let movieId = $(this)[0].id;
@@ -358,20 +380,20 @@ $(document).on('click', '.moviePosterDiv', function() {
 //get streaming/ where to watch function
 function getStreamingOptions(id) {
     const viewUrl = 'https://api.themoviedb.org/3/movie/' + id + '/watch/providers' + movieApiKey + '&watch_region=us&language=en-US';
-     //fetch the view Url
-     fetch(viewUrl) 
-     .then(function(response) {
-         return response.json()
-     })
-     .then(function(response){
-        //  console.log(response.results.US);
-         const streamingOption = response.results.US.link;
-         window.open(streamingOption, '_blank');
-     })
-     .catch(function(error) {
-        modalText.textContent = "We couldnt find watch options for your selected movie. Your selected movie may still be in theaters.";
-        modal.style.display = 'block';
-     })
+    //fetch the view Url
+    fetch(viewUrl)
+        .then(function (response) {
+            return response.json()
+        })
+        .then(function (response) {
+            //  console.log(response.results.US);
+            const streamingOption = response.results.US.link;
+            window.open(streamingOption, '_blank');
+        })
+        .catch(function (error) {
+            modalText.textContent = "We couldnt find watch options for your selected movie. Your selected movie may still be in theaters.";
+            modal.style.display = 'block';
+        })
 }
 
 
@@ -407,7 +429,12 @@ function searchByGenre() {
                 let favoriteAnchor = document.createElement("a");
                 // create the star icon element
                 let favoriteIcon = document.createElement("i");
-                favoriteIcon.classList = 'far fa-star fa-large star';
+                if (localStorage.getItem(searchedByGenreArr[i].title) !== null) {
+                    favoriteIcon.classList = 'fas fa-star fa-large star';
+                    //if not, save to watch list
+                } else {
+                    favoriteIcon.classList = 'far fa-star fa-large star';
+                }
                 favoriteIcon.setAttribute('id', searchedByGenreArr[i].title);
                 // append the anchor to the movie poster
                 genreDiv.appendChild(favoriteAnchor);
@@ -435,7 +462,7 @@ function searchByGenre() {
         .catch(function (error) {
             modalText.textContent = "Oops! Something went wrong.";
             modal.style.display = 'block';
-    })
+        })
 
 }
 
@@ -448,6 +475,6 @@ $('.genre-btn').on('click', function () {
 // show watchList on page load
 saveToWatchList("");
 //modal close
-$(document).on('click', closeModalBtn, function() {
+$(document).on('click', closeModalBtn, function () {
     modal.style.display = 'none';
 })

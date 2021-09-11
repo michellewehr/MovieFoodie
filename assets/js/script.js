@@ -58,8 +58,17 @@ function showNewReleases() {
                                 let favoriteAnchor = document.createElement('a');
                                 // create an icon element for favoriting
                                 let favoriteIcon = document.createElement('i');
+                                if (localStorage.getItem(response.title) !== null) {
+                                    favoriteIcon.classList = 'fas fa-star fa-large newStar column';
+                                    //if not, save to watch list
+                                } else {
                                 favoriteIcon.classList = 'far fa-star fa-large newStar column';
+                                }
                                 favoriteIcon.setAttribute('id', response.title)
+                                //append the fav icon to fav anchor
+                                favoriteAnchor.appendChild(favoriteIcon);
+                                // append fav anchor to video div element
+                                titleStarDiv.appendChild(favoriteAnchor);
                                 //append the fav icon to fav anchor
                                 favoriteAnchor.appendChild(favoriteIcon);
                                 // append fav anchor to video div element
@@ -157,7 +166,13 @@ function searchMovieByTitle(title) {
                     let favoriteAnchor = document.createElement("a");
                     // create the star icon element
                     let favoriteIcon = document.createElement("i");
-                    favoriteIcon.classList = 'far fa-star fa-large star';
+                    if (localStorage.getItem(response.title) !== null) {
+                        favoriteIcon.classList = 'fas fa-star fa-large star star-custom';
+                        //if not, save to watch list
+                    } else {
+                    favoriteIcon.classList = 'far fa-star fa-large star star-custom';
+                    }
+                    favoriteIcon.setAttribute('id', response.title)
                     // append the anchor to the movie poster
                     moviePoster.appendChild(favoriteAnchor);
                     // append the icon to the anchor 
@@ -244,7 +259,14 @@ function carouselDisplay (results) {
         ratingYearDiv.className = 'poster-footer'
         yearEl.className = 'carousel-year';
         yearEl.textContent = year;
-        starEl.className = 'far fa-star fa-large star star-custom';
+        // starEl.className = 'far fa-star fa-large star star-custom';
+        if (localStorage.getItem(results[i].title) !== null) {
+           starEl.className = 'fas fa-star fa-large star star-custom';
+            //if not, save to watch list
+        } else {
+            starEl.className = 'far fa-star fa-large star star-custom';
+        }
+
         starEl.setAttribute('id', results[i].title);
         ratingEl.className = 'carousel-rating';
         ratingEl.textContent = "Rating: " + results[i].vote_average + "/10";
@@ -407,7 +429,12 @@ function searchByGenre() {
                 let favoriteAnchor = document.createElement("a");
                 // create the star icon element
                 let favoriteIcon = document.createElement("i");
+                if (localStorage.getItem(searchedByGenreArr[i].title) !== null) {
+                    favoriteIcon.classList = 'fas fa-star fa-large star';
+                    //if not, save to watch list
+                } else {
                 favoriteIcon.classList = 'far fa-star fa-large star';
+                }
                 favoriteIcon.setAttribute('id', searchedByGenreArr[i].title);
                 // append the anchor to the movie poster
                 genreDiv.appendChild(favoriteAnchor);

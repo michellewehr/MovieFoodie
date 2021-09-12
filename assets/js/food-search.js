@@ -41,6 +41,12 @@ const closeModalBtn = document.querySelector('#closeBtn');
         }
   
 
+// search food on enter
+$('#foodSearch').submit(function(event) {
+    event.preventDefault();
+    getSnack();
+})
+
 //modal close
 $(document).on('click', closeModalBtn, function() {
     modal.style.display = 'none';

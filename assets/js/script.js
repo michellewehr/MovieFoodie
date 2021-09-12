@@ -360,16 +360,21 @@ function saveToWatchList(saveMovie) {
         //filter through local storage to only grab relevant history
         if (watchListStorage.getItem(watchListStorage.key(i)) == "MovieFoodie") {
             var listMovie = document.getElementById("watchLater" + j);
-            j++;
             // push movie title to watch list
             listMovie.innerHTML = watchListStorage.key(i);
-
-
-
+            document.getElementById("watchLater" + j).addEventListener("click", function (event) { event.preventDefault(); searchWatchList(watchListStorage.key(i)); }, false);
+            j++;
         }
+
+
     }
 }
 
+// Put title of watchlist movie in search bar and click search button
+function searchWatchList(title) {
+    document.getElementById("searchMovie").value = title;
+    document.getElementById("searchButton").click();
+}
 //when click on the movie poster go to site that shows streaming options
 $(document).on('click', '.moviePosterDiv', function () {
     // if user clicks on the star, return out of function
@@ -475,7 +480,7 @@ $('.genre-btn').on('click', function () {
 })
 
 // search movie on submit (enter or click)
-$('#searchForm').submit(function(event) {
+$('#searchForm').submit(function (event) {
     event.preventDefault();
     searchMovieByTitle();
 })

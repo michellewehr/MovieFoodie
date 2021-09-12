@@ -120,8 +120,6 @@ function searchMovieByTitle(title) {
     $(".searchResultsHeading").text('Search Results: ');
     // clear the div so it clears every new search
     $(".posters").html(" ");
-    //brings us to the section of the page that shows movies
-    window.location.href = "#searchedMovies";
     // get user search value
     let movieTitle = $('#searchMovie').val().trim();
     // get movie api url
@@ -167,10 +165,10 @@ function searchMovieByTitle(title) {
                             // create the star icon element
                             let favoriteIcon = document.createElement("i");
                             if (localStorage.getItem(response.title) !== null) {
-                                favoriteIcon.classList = 'fas fa-star fa-large star star-custom';
+                                favoriteIcon.classList = 'fas fa-star fa-large star';
                                 //if not, save to watch list
                             } else {
-                                favoriteIcon.classList = 'far fa-star fa-large star star-custom';
+                                favoriteIcon.classList = 'far fa-star fa-large star';
                             }
                             favoriteIcon.setAttribute('id', response.title)
                             // append the anchor to the movie poster
@@ -223,6 +221,10 @@ function carouselFetch() {
             // calls the carousel display function and passes the response results object
             carouselDisplay(response.results);
         })
+        .catch(function (error) {
+            modalText.textContent = 'Oops! Something went wrong!'
+            modal.style.display = 'block';
+        })
 
 }
 
@@ -261,10 +263,10 @@ function carouselDisplay(results) {
         yearEl.textContent = year;
         // starEl.className = 'far fa-star fa-large star star-custom';
         if (localStorage.getItem(results[i].title) !== null) {
-            starEl.className = 'fas fa-star fa-large star star-custom';
+            starEl.className = 'fas fa-star fa-large star-custom';
             //if not, save to watch list
         } else {
-            starEl.className = 'far fa-star fa-large star star-custom';
+            starEl.className = 'far fa-star fa-large star-custom';
         }
 
         starEl.setAttribute('id', results[i].title);
@@ -470,6 +472,12 @@ function searchByGenre() {
 $('.genre-btn').on('click', function () {
     $('.genrePosters').html("");
     searchByGenre();
+})
+
+// search movie on submit (enter or click)
+$('#searchForm').submit(function(event) {
+    event.preventDefault();
+    searchMovieByTitle();
 })
 
 // show watchList on page load

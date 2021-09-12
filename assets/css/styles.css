@@ -82,9 +82,11 @@
 }
 
 .star-custom {
-  position: relative !important;
-  top: -365px !important;
-  right: -140px !important;
+  position: relative;
+  top: -365px;
+  right: -140px;
+  color: white;
+  filter: drop-shadow(2px 2px 2px black)
 }
 
 /* MOVIE SEARCH*/

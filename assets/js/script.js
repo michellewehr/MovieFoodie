@@ -167,10 +167,10 @@ function searchMovieByTitle(title) {
                             // create the star icon element
                             let favoriteIcon = document.createElement("i");
                             if (localStorage.getItem(response.title) !== null) {
-                                favoriteIcon.classList = 'fas fa-star fa-large star star-custom';
+                                favoriteIcon.classList = 'fas fa-star fa-large star';
                                 //if not, save to watch list
                             } else {
-                                favoriteIcon.classList = 'far fa-star fa-large star star-custom';
+                                favoriteIcon.classList = 'far fa-star fa-large star';
                             }
                             favoriteIcon.setAttribute('id', response.title)
                             // append the anchor to the movie poster
@@ -261,10 +261,10 @@ function carouselDisplay(results) {
         yearEl.textContent = year;
         // starEl.className = 'far fa-star fa-large star star-custom';
         if (localStorage.getItem(results[i].title) !== null) {
-            starEl.className = 'fas fa-star fa-large star star-custom';
+            starEl.className = 'fas fa-star fa-large star-custom';
             //if not, save to watch list
         } else {
-            starEl.className = 'far fa-star fa-large star star-custom';
+            starEl.className = 'far fa-star fa-large star-custom';
         }
 
         starEl.setAttribute('id', results[i].title);

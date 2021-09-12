@@ -120,8 +120,6 @@ function searchMovieByTitle(title) {
     $(".searchResultsHeading").text('Search Results: ');
     // clear the div so it clears every new search
     $(".posters").html(" ");
-    //brings us to the section of the page that shows movies
-    window.location.href = "#searchedMovies";
     // get user search value
     let movieTitle = $('#searchMovie').val().trim();
     // get movie api url
@@ -222,6 +220,10 @@ function carouselFetch() {
         .then(function (response) {
             // calls the carousel display function and passes the response results object
             carouselDisplay(response.results);
+        })
+        .catch(function (error) {
+            modalText.textContent = 'Oops! Something went wrong!'
+            modal.style.display = 'block';
         })
 
 }
@@ -472,7 +474,7 @@ $('.genre-btn').on('click', function () {
     searchByGenre();
 })
 
-// search on enter
+// search movie on submit (enter or click)
 $('#searchForm').submit(function(event) {
     event.preventDefault();
     searchMovieByTitle();

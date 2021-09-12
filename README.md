@@ -8,7 +8,7 @@
 - When the user clicks on "concession stand" in the navbar, they are greeted with a featured snack and are able to search by ingredient for snack recipes.
 
 ![Main Page](./assets/screenshots/Movie-Page.jpg)
-![Food Page](./assets/screenshots/Foodie-Page.jpg)
+![Food Page](./assets/screenshots/concessions-screen-shot.jpg)
 
 ## Installation
 

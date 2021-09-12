@@ -5,7 +5,7 @@
 
 ## Deployed Application and Repository
 - [Repository](https://github.com/michellewehr/MovieFoodie)
-- [Deployed apllication](https://michellewehr.github.io/MovieFoodie/)
+- [Deployed aplication](https://michellewehr.github.io/MovieFoodie/)
 
 ## Screenshots
 ![Main Page](./assets/screenshots/Movie-Page.jpg)

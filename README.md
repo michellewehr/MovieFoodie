@@ -30,7 +30,7 @@ The purpose of this application is for users to be able to browse movies they ar
 ## This application can be found:
 
 - [Repository](https://github.com/michellewehr/MovieFoodie)
-- [Deployed aplication](https://michellewehr.github.io/MovieFoodie/)
+- [Deployed application](https://michellewehr.github.io/MovieFoodie/)
 
 ## Contribution
 

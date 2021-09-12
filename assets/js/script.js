@@ -472,6 +472,12 @@ $('.genre-btn').on('click', function () {
     searchByGenre();
 })
 
+// search on enter
+$('#searchForm').submit(function(event) {
+    event.preventDefault();
+    searchMovieByTitle();
+})
+
 // show watchList on page load
 saveToWatchList("");
 //modal close
